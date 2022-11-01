@@ -1,0 +1,145 @@
+.btn {
+    text-decoration: none;
+    background-color: teal;
+    color: white;
+    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid teal;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: rgba(255, 1, 1, 0.549);
+    border-color: #11acac;
+}
+
+/* SEGUNDO BOTÓN PRUEBA */
+
+.btn2 {
+    text-decoration: none;
+    background-color: rgba(255, 1, 1, 0.714);
+    color: white;
+    border: 1.1px solid #e7f8f8;
+    position: relative;
+
+    border-radius: 50%;
+    font-size: 1.1rem;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 4.6px;
+    padding-bottom: 4px;
+
+    transition: color 0.4s ease;
+    cursor: pointer;
+
+    transform: translate(-120%, 20%);
+    -ms-transform: translate(-120%, -55%);
+}
+
+.btn2:hover {
+    background-color: #ec0808aa;
+    border-color: #f80404aa;
+    position: relative;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 4.6px;
+    padding-bottom: 4px;
+
+    transition: color 0.4s ease;
+    cursor: pointer;
+
+    transform: translate(-120%, 20%);
+    -ms-transform: translate(-120%, -55%);
+}
+
+.btnactivated {
+    text-decoration: none;
+    background-color: rgb(254, 244, 244);
+    color: #ff0000;
+    border: 1.1px solid rgba(255, 1, 1, 0.549);
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 4.6px;
+    padding-bottom: 4px;
+
+    transition: color 0.4s ease;
+    cursor: pointer;
+
+    transform: translate(-120%, 20%);
+    -ms-transform: translate(-120%, -55%);
+}
+
+.btnactivated:hover {
+    background-color: #ec08087e;
+    border-color: #f80404aa;
+    color: #fefefe;
+    border: 1.1px solid #f80404aa;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    position: relative;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 4.6px;
+    padding-bottom: 4px;
+
+    transition: color 0.4s ease;
+    cursor: pointer;
+
+    transform: translate(-120%, 20%);
+    -ms-transform: translate(-120%, -55%);
+}
+
+/*TRASHCANE BUTTON*/
+
+.btnTrash {
+    text-decoration: none;
+    background-color: rgba(249, 244, 232, 0.971);
+    color: #231717;
+    border: 1.1px solid rgba(137, 130, 130, 0.73);
+    position: relative;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    padding: 7px;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 4.6px;
+    padding-bottom: 4px;
+
+    transition: color 0.4s ease;
+    cursor: pointer;
+
+    transform: translate(-120%, 20%);
+    -ms-transform: translate(-120%, -55%);
+}
+
+.btnTrash:hover {
+    background-color: #231717;
+    border-color: #231717;
+    color: rgba(223, 218, 218, 0.921);
+    border: 1.1px solid #231717;
+    padding: 7px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    position: relative;
+
+    width: fit-content;
+    height: fit-content;
+    padding-top: 4.6px;
+    padding-bottom: 4px;
+
+    transition: color 0.4s ease;
+    cursor: pointer;
+
+    transform: translate(-120%, 20%);
+    -ms-transform: translate(-120%, -55%);
+}

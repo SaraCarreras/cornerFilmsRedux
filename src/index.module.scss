@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    background-color: rgb(37, 36, 36);
+    min-width: 300px;
+    min-height: 300px;
+}
+
+main {
+    margin-left: 10rem;
+    margin-right: 1rem;
+    margin-top: 0rem;
+    text-align: center;
+    color: white;
+}
+
+.page-separator {
+    display: flex;
+    flex-direction: column;
+}
