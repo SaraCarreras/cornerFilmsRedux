@@ -4,7 +4,7 @@ import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../button.fav/button.fav";
 import { moviesActionCreators } from "../../reducer/movies.action.creators";
 import React from "react";
-import movieslist from "./movieslist.module.scss";
+import moviecard from "./moviecard.module.scss";
 import { Link } from "react-router-dom";
 
 /*
@@ -32,7 +32,7 @@ const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 const POPULAR_MOVIES =
     BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
 
-function MoviesList() {
+function MovieCard() {
     const dispatch = useDispatch();
     const movies = useSelector((state) => (state as RootState).movies);
 
@@ -44,14 +44,14 @@ function MoviesList() {
                 console.log(data.results);
             });
     }, [dispatch]);
-
+    console.log(movies);
     return (
         <>
             {movies.map((movie) => {
                 return (
-                    <React.Fragment key={movie.title}>
-                        <section className={movieslist.container}>
-                            <div className={movieslist.serie}>
+                    <ul key={movie.id}>
+                        <section className={moviecard.container}>
+                            <div className={moviecard.serie}>
                                 <Link
                                     to={`/favorites/${movie.id}`}
                                     target="link to full movie"
@@ -60,7 +60,7 @@ function MoviesList() {
                                     src={IMAG_URL + movie.poster_path}
                                     alt="{movie.title}"
                                 ></img>
-                                <div className={movieslist.description}>
+                                <div className={moviecard.description}>
                                     <p>
                                         <b>{movie.title}</b>
                                     </p>
@@ -73,10 +73,10 @@ function MoviesList() {
                                 ></FavButton>
                             </div>
                         </section>
-                    </React.Fragment>
+                    </ul>
                 );
             })}
         </>
     );
 }
-export default MoviesList;
+export default MovieCard;
