@@ -1,20 +1,4 @@
-.btn {
-    text-decoration: none;
-    background-color: teal;
-    color: white;
-    border-radius: 4px;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid teal;
-    cursor: pointer;
-}
-
-.btn:hover,
-.btn:active {
-    background-color: rgba(255, 1, 1, 0.549);
-    border-color: #11acac;
-}
-
-/* SEGUNDO BOTÓN PRUEBA */
+/* BUTTON HEART */
 
 .btn2 {
     text-decoration: none;
@@ -28,8 +12,11 @@
 
     width: fit-content;
     height: fit-content;
-    padding-top: 4.6px;
+
+    padding-top: 5px;
     padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 6px;
 
     transition: color 0.4s ease;
     cursor: pointer;
@@ -45,8 +32,11 @@
 
     width: fit-content;
     height: fit-content;
-    padding-top: 4.6px;
+
+    padding-top: 5px;
     padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 6px;
 
     transition: color 0.4s ease;
     cursor: pointer;
@@ -66,8 +56,11 @@
 
     width: fit-content;
     height: fit-content;
-    padding-top: 4.6px;
+
+    padding-top: 5px;
     padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 6px;
 
     transition: color 0.4s ease;
     cursor: pointer;
@@ -88,8 +81,11 @@
 
     width: fit-content;
     height: fit-content;
-    padding-top: 4.6px;
+
+    padding-top: 5px;
     padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 6px;
 
     transition: color 0.4s ease;
     cursor: pointer;
