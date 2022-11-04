@@ -17,3 +17,11 @@ main {
     display: flex;
     flex-direction: column;
 }
+
+@media (max-width: 560px) {
+    .main {
+        justify-content: center;
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
+}
