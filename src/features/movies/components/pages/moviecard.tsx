@@ -45,6 +45,7 @@ function MovieCard() {
             });
     }, [dispatch]);
     console.log(movies);
+
     return (
         <>
             {movies.map((movie) => {
@@ -52,14 +53,17 @@ function MovieCard() {
                     <ul key={movie.id}>
                         <section className={moviecard.container}>
                             <div className={moviecard.serie}>
-                                <Link
+                                {/* <Link
                                     to={`/favorites/${movie.id}`}
                                     target="link to full movie"
-                                ></Link>
-                                <img
-                                    src={IMAG_URL + movie.poster_path}
-                                    alt="{movie.title}"
-                                ></img>
+                                ></Link> */}
+                                <Link to={`/movies/${movie.id}`}>
+                                    <img
+                                        src={IMAG_URL + movie.poster_path}
+                                        alt="{movie.title}"
+                                    />
+                                </Link>
+
                                 <div className={moviecard.description}>
                                     <p>
                                         <b>{movie.title}</b>
