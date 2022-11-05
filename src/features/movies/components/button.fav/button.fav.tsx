@@ -57,7 +57,6 @@ export function FavButton({
         let newFavoritesArray: Array<iMovie> = [
             ...userLoggedInfo.favoritesArray,
         ];
-        ////¿¿¿¿¿*BAD xk faltaba newFav es = al filter*???
 
         // console.log(
         //     "isMyfavorite ANTES ANTES " + JSON.stringify(isMyfavorite, null, 4)
