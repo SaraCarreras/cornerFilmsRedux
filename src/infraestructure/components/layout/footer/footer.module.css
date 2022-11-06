@@ -3,10 +3,11 @@
     bottom: 0;
     left: 0;
     right: 0;
+    margin-top: 1rem;
     background-color: #008080;
     height: auto;
 
-    padding-top: 5px;
+    /* padding-top: 5px; */
     color: #c7f8f8;
     display: flex;
     align-items: center;

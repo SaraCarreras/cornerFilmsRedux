@@ -58,6 +58,10 @@
             padding-right: 1rem;
         }
     }
+
+    &:hover {
+        opacity: 0.9;
+    }
 }
 
 @media (max-width: 560px) {
