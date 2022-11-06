@@ -1,23 +1,23 @@
-import classes from "./header.module.css";
+import styles from "./header.module.scss";
 import { NavLink } from "react-router-dom";
 import { ButtonLogin } from "../../button/button.login";
 
 const Header = () => {
     const logo = "./dotpop.svg";
     return (
-        <header className={classes.header}>
-            <div className={classes.webname}>
+        <header className={styles.header}>
+            <div className={styles.webname}>
                 CornerFilms
-                <img src={logo} className={classes.logo} alt="logo" />
+                <img src={logo} className={styles.logo} alt="logo" />
             </div>
 
-            <nav className={classes.nav}>
+            <nav className={styles.nav}>
                 <ul>
                     <li>
                         <NavLink
                             to="/home"
                             className={(navData) =>
-                                navData.isActive ? classes.active : ""
+                                navData.isActive ? styles.active : ""
                             }
                         >
                             Home
@@ -27,7 +27,7 @@ const Header = () => {
                         <NavLink
                             to="/favorites"
                             className={(navData) =>
-                                navData.isActive ? classes.active : ""
+                                navData.isActive ? styles.active : ""
                             }
                         >
                             Favorites

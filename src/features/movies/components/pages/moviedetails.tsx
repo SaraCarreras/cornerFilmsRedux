@@ -1,4 +1,6 @@
+import styles from "./moviedetails.module.scss";
+
 function MovieDetails() {
-    return <h1>Details</h1>;
+    return <div className={styles.detailsContainer}>Details</div>;
 }
 export default MovieDetails;

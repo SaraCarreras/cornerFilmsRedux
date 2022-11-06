@@ -4,7 +4,7 @@ import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../button.fav/button.fav";
 import { moviesActionCreators } from "../../reducer/movies.action.creators";
 import React from "react";
-import moviecard from "./moviecard.module.scss";
+import styles from "./moviecard.module.scss";
 import { Link } from "react-router-dom";
 
 /*
@@ -51,8 +51,8 @@ function MovieCard() {
             {movies.map((movie) => {
                 return (
                     <ul key={movie.id}>
-                        <section className={moviecard.container}>
-                            <div className={moviecard.serie}>
+                        <section className={styles.container}>
+                            <div className={styles.serie}>
                                 {/* <Link
                                     to={`/favorites/${movie.id}`}
                                     target="link to full movie"
@@ -64,7 +64,7 @@ function MovieCard() {
                                     />
                                 </Link>
 
-                                <div className={moviecard.description}>
+                                <div className={styles.description}>
                                     <p>
                                         <b>{movie.title}</b>
                                     </p>

@@ -1,4 +1,4 @@
-import footer from "./footer.module.css";
+import styles from "./footer.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faTwitter,
@@ -25,12 +25,12 @@ export function Footer({
         event.preventDefault();
     };
     return (
-        <footer className={footer.footer}>
-            <ul className={footer.socials}>
+        <footer className={styles.footer}>
+            <ul className={styles.socials}>
                 <li>
                     <a
                         href="www.twitter.com"
-                        className={footer.socials}
+                        className={styles.socials}
                         onClick={prevent}
                     >
                         <FontAwesomeIcon icon={faTwitter} />
@@ -40,7 +40,7 @@ export function Footer({
                 <li>
                     <a
                         href="www.facebook.com"
-                        className={footer.socials}
+                        className={styles.socials}
                         onClick={prevent}
                     >
                         <FontAwesomeIcon icon={faFacebook} />
@@ -49,7 +49,7 @@ export function Footer({
                 <li>
                     <a
                         href="www.instagram.com"
-                        className={footer.socials}
+                        className={styles.socials}
                         onClick={prevent}
                     >
                         <FontAwesomeIcon icon={faInstagram} />
@@ -58,7 +58,7 @@ export function Footer({
                 <li>
                     <a
                         href="www.github.com"
-                        className={footer.socials}
+                        className={styles.socials}
                         onClick={prevent}
                     >
                         <FontAwesomeIcon icon={faGithub} />
@@ -68,7 +68,7 @@ export function Footer({
                     <a
                         href="/favorites"
                         className={
-                            isActive ? footer.navlistitemactive : footer.socials
+                            isActive ? styles.navlistitemactive : styles.socials
                         }
                         onClick={handleClick}
                     >
@@ -76,7 +76,7 @@ export function Footer({
                     </a>
                 </li>
             </ul>
-            <div className={footer.content}>
+            <div className={styles.content}>
                 <p>CornerFilms Developed by Sara Carreras</p>
             </div>
         </footer>

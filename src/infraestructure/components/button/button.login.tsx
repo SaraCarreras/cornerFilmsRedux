@@ -1,7 +1,7 @@
 import { useLoginRedux } from "../../hooks/use.loginredux";
 import { RootState } from "../../store/store";
 import { useSelector } from "react-redux";
-import loginbutton from "./loginbutton.module.css";
+import styles from "./loginbutton.module.scss";
 
 export function ButtonLogin() {
     const log = useLoginRedux();
@@ -9,11 +9,11 @@ export function ButtonLogin() {
 
     return (
         <>
-            <ul className={loginbutton.nav}>
-                <li className={loginbutton.noImage}>
+            <ul className={styles.nav}>
+                <li className={styles.noImage}>
                     {loginState.photoURL ? (
                         <img
-                            className={loginbutton.img}
+                            className={styles.img}
                             alt={loginState.name}
                             src={loginState.photoURL}
                         ></img>
@@ -23,15 +23,12 @@ export function ButtonLogin() {
                 </li>
                 <li>
                     {loginState.name ? (
-                        <button
-                            className={loginbutton.btn}
-                            onClick={log.doLogout}
-                        >
+                        <button className={styles.btn} onClick={log.doLogout}>
                             Log out
                         </button>
                     ) : (
                         <input
-                            className={loginbutton.btn}
+                            className={styles.btn}
                             type="button"
                             value="Login"
                             onClick={log.doLogin}
