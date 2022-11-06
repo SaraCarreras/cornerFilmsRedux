@@ -1,13 +1,15 @@
 .popularMovies {
     display: flex;
     text-align: flex-start;
+    margin-left: 7.4rem;
+    padding-top: 1rem;
 }
 
 .movies {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-left: 5rem;
+    margin-left: 3rem;
 }
 
 @media (max-width: 560px) {

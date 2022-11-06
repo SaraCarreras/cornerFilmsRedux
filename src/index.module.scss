@@ -1,16 +1,12 @@
 body {
     margin: 0;
-    background-color: rgb(37, 36, 36);
-    min-width: 300px;
-    min-height: 300px;
-}
 
-main {
-    margin-left: 10rem;
-    margin-right: 1rem;
-    margin-top: 0rem;
-    text-align: center;
-    color: white;
+    background-color: rgb(37, 36, 36);
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .page-separator {
@@ -18,10 +14,12 @@ main {
     flex-direction: column;
 }
 
-@media (max-width: 560px) {
-    .main {
-        justify-content: center;
-        margin-left: 0rem;
-        margin-right: 0rem;
-    }
+main {
+    min-height: 74vh;
+
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+    color: aliceblue;
 }
