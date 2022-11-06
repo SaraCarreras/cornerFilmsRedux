@@ -5,12 +5,13 @@
     right: 0;
     background-color: #008080;
     height: auto;
-    width: 100%;
+
     padding-top: 5px;
     color: #c7f8f8;
     display: flex;
     align-items: center;
     flex-direction: column;
+    min-height: 50px;
 }
 
 .content {
@@ -67,4 +68,7 @@
     justify-content: center;
 
     margin-left: 0.5rem;
+}
+
+@media (max-width: 560px) {
 }

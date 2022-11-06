@@ -1,5 +1,5 @@
 .header {
-    width: 92%;
+    min-height: 50px;
     height: 5rem;
     display: flex;
     padding: 0 4%;
@@ -44,4 +44,10 @@
 .nav a.active {
     color: #e6fcfc;
     text-shadow: #ccc 1px 0 10px;
+}
+
+@media (max-width: 560px) {
+    .webname {
+        font-size: smaller;
+    }
 }
