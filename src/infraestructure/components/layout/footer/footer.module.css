@@ -3,10 +3,11 @@
     bottom: 0;
     left: 0;
     right: 0;
+    margin-top: 1rem;
     background-color: #008080;
     height: auto;
 
-    padding-top: 5px;
+    /* padding-top: 5px; */
     color: #c7f8f8;
     display: flex;
     align-items: center;
@@ -18,11 +19,10 @@
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: flex-end;
 }
 .content p {
-    max-width: 500px;
     margin: 10px auto;
+    padding-left: 55px;
     line-height: 28px;
     font-size: 14px;
     color: #a3f8f8;
