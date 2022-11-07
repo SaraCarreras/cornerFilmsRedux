@@ -1,0 +1,16 @@
+.detailsContainer {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+
+    & img {
+        border-radius: 15px;
+        max-width: 400px;
+        margin: 15px;
+    }
+    & div {
+        max-width: 400px;
+        margin: 15px;
+        font-size: 1.5rem;
+    }
+}

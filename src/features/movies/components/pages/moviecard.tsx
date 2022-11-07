@@ -41,10 +41,10 @@ function MovieCard() {
             .then((resp) => resp.json())
             .then((data) => {
                 dispatch(moviesActionCreators.get(data.results));
-                console.log(data.results);
+                // console.log(data.results);
             });
     }, [dispatch]);
-    console.log(movies);
+    // console.log(movies);
 
     return (
         <>
@@ -60,7 +60,7 @@ function MovieCard() {
                                 <Link to={`/movies/${movie.id}`}>
                                     <img
                                         src={IMAG_URL + movie.poster_path}
-                                        alt="{movie.title}"
+                                        alt={movie.title}
                                     />
                                 </Link>
 
