@@ -2,13 +2,13 @@ import { Fragment } from "react";
 import { Footer } from "../footer/footer";
 import MainNavigation from "../header/header";
 
-import classes from "./Layout.module.css";
+import styles from "./Layout.module.scss";
 
 const Layout = ({ children }: { children: JSX.Element }) => {
     return (
         <>
             <MainNavigation />
-            <main className={classes.main}>{children}</main>
+            <main className={styles.main}>{children}</main>
             <Footer />
         </>
     );

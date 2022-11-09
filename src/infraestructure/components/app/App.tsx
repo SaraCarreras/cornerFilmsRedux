@@ -16,7 +16,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/movies/:movieId" element={<MovieDetails />} />
-                <Route path="*" element={<Navigate replace to="/home" />} />
+                <Route path="*" element={<Navigate replace to="/" />} />
             </Routes>
         </Layout>
     );

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../../../movies/components/button.fav/button.fav";
-import favorites from "./favorites.module.scss";
+import styles from "./favorites.module.scss";
 
 function Favorites() {
     const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
@@ -15,17 +15,17 @@ function Favorites() {
     if (isLogged && movies.length !== 0) {
         return (
             <React.Fragment>
-                <h1 className={favorites.favMovies}>Favorites Page</h1>
-                <div className={favorites.movies}>
+                <h1 className={styles.favMovies}>Favorites Page</h1>
+                <div className={styles.movies}>
                     {movies.map((movie) => {
                         return (
-                            <section className={favorites.container}>
-                                <div className={favorites.serie}>
+                            <section className={styles.container}>
+                                <div className={styles.serie}>
                                     <img
                                         src={IMAG_URL + movie.poster_path}
                                         alt="{movie.title}"
                                     ></img>
-                                    <div className={favorites.description}>
+                                    <div className={styles.description}>
                                         <p>
                                             <b>{movie.title}</b>
                                         </p>

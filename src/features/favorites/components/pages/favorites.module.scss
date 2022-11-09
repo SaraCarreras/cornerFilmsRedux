@@ -1,6 +1,8 @@
 .favMovies {
     display: flex;
     text-align: flex-start;
+    margin-left: 5rem;
+    padding-top: 1rem;
 }
 
 .movies {
@@ -62,6 +64,7 @@
         }
 
         & p {
+            text-align: center;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 10;

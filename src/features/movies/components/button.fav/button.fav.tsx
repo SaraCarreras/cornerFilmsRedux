@@ -8,7 +8,7 @@ import { iMovie } from "../../interfaces/imovie";
 import { RootState } from "../../../../infraestructure/store/store";
 import { addFavorite } from "../../../favorites/services/http.fetch.repository";
 
-import buttonfav from "./buttonfav.module.scss";
+import styles from "./buttonfav.module.scss";
 import { loginActionsCreators } from "../../../../infraestructure/reducer/login.action.creators";
 
 // const favoritesProvisional =
@@ -83,16 +83,14 @@ export function FavButton({
         <>
             {pathname === "/home" ? (
                 <button
-                    className={
-                        isMyfavorite ? buttonfav.btnactivated : buttonfav.btn2
-                    }
+                    className={isMyfavorite ? styles.btnactivated : styles.btn2}
                     onClick={handleClick}
                 >
                     <FontAwesomeIcon icon={faHeart} />
                 </button>
             ) : (
                 <button
-                    className={isMyfavorite ? buttonfav.btnTrash : ""}
+                    className={isMyfavorite ? styles.btnTrash : ""}
                     onClick={handleClick}
                 >
                     <FontAwesomeIcon icon={faTrash} />

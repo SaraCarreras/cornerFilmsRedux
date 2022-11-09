@@ -7,6 +7,12 @@ body {
 
     display: flex;
     flex-direction: column;
+
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .page-separator {
@@ -20,6 +26,10 @@ main {
     display: flex;
     flex-direction: column;
 
-    text-align: center;
     color: aliceblue;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
