@@ -1,22 +1,14 @@
-// import { RootState } from "../../../../infraestructure/store/store";
-// import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./moviedetails.module.scss";
-
-import { useDispatch } from "react-redux";
-
 import { iMovie } from "../../interfaces/imovie";
 
-// const movieInfo =
-//     "https://api.themoviedb.org/3/movie/550?api_key=04d110606a25e52db02f63a7d1e1d707";
+// const movieInfo = "https://api.themoviedb.org/3/movie/550?api_key=04d110606a25e52db02f63a7d1e1d707";
 
 const API_KEY = "api_key=04d110606a25e52db02f63a7d1e1d707";
 const BASEAPI_URL = "https://api.themoviedb.org/3";
 const LANGUAGE = "&language=es&";
-
-// const POPULAR_MOVIES =
-//     BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
+const imageURL = "https://image.tmdb.org/t/p/w300/";
 
 function MovieDetails() {
     const initialState: iMovie = {
@@ -29,24 +21,34 @@ function MovieDetails() {
     };
     const [movie, setMovie] = useState(initialState);
     const { movieId } = useParams();
-    const dispatch = useDispatch();
+
     // console.log("PARAM" + movieId);
     const GetById = BASEAPI_URL + `/movie/${movieId}?` + API_KEY + LANGUAGE;
-    const imageURL = "https://image.tmdb.org/t/p/w500/" + movie.poster_path;
 
     useEffect(() => {
         fetch(GetById)
             .then((resp) => resp.json())
             .then((data) => {
-                setMovie(data);
+                setMovie(() => ({
+                    title: data.title,
+                    id: data.id,
+                    poster_path: `${imageURL}` + data.poster_path,
+                    overview: data.overview,
+                    vote_average: data.vote_average,
+                    genres: data.genres,
+                }));
                 // console.log(data.results);
             });
-    }, [dispatch, GetById]);
+    }, [GetById]);
 
     if (movie && movie.genres != null) {
         return (
             <div className={styles.detailsContainer}>
-                <img className={styles.col} src={imageURL} alt={movie.title} />
+                <img
+                    className={styles.col}
+                    src={movie.poster_path}
+                    alt={movie.title}
+                />
                 <div className={styles.col}>
                     <p>
                         <strong>Título:</strong> {movie.title}
