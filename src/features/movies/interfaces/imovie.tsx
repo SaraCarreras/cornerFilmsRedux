@@ -4,5 +4,9 @@ export interface iMovie {
     poster_path: string;
     overview: string;
     vote_average: number;
-    genres?: { id: number; name: "" }[] | null;
+    release_date: string;
 }
+
+export type iParam = {
+    movieId: string;
+};
