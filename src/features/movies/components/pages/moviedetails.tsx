@@ -4,7 +4,7 @@ import styles from "./moviedetails.module.scss";
 import { iParam } from "../../interfaces/imovie";
 import { RootState } from "../../../../infraestructure/store/store";
 
-const imageURL = "https://image.tmdb.org/t/p/w300/";
+const imageURL = "https://image.tmdb.org/t/p/w500/";
 
 function MovieDetails() {
     const movies = useSelector((state) => (state as RootState).movies);
@@ -30,20 +30,21 @@ function MovieDetails() {
                                 alt={element.title}
                             />
 
-                            <p>
-                                <strong>Description: </strong>
-                                {element.overview}
-                            </p>
-                        </div>
-                        <div className={styles.col}>
-                            <p>
-                                <strong>Título: </strong> {element.title}
-                            </p>
+                            <div className={styles.col}>
+                                <p>
+                                    <strong>Description: </strong>
+                                    {element.overview}
+                                </p>
 
-                            <p>
-                                <strong>Fecha de estreno: </strong>
-                                {element.release_date}
-                            </p>
+                                <p>
+                                    <strong>Título: </strong> {element.title}
+                                </p>
+
+                                <p>
+                                    <strong>Fecha de estreno: </strong>
+                                    {element.release_date}
+                                </p>
+                            </div>
                         </div>
                     </>
                 ) : (
