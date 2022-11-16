@@ -1,0 +1,35 @@
+.searchContainer {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 2rem;
+}
+
+.searchBox {
+    position: relative;
+}
+.searchButton {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    cursor: pointer;
+    height: 100%;
+    border: none;
+    background: none;
+    font-size: 20px;
+}
+.searchInput {
+    height: 35px;
+    width: 200px;
+
+    transition: width 1s ease-out;
+
+    border-radius: 25px;
+    padding: 5px 30px 5px 10px;
+    background-color: #c7f8f8;
+    font-size: medium;
+    &:hover {
+        width: 300px;
+        transition: width 1s ease-in-out;
+    }
+}
