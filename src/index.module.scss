@@ -1,8 +1,6 @@
 body {
     margin: 0;
-
     background-color: rgb(37, 36, 36);
-
     min-height: 100vh;
 
     display: flex;
@@ -21,11 +19,9 @@ body {
 }
 
 main {
-    min-height: 74vh;
-
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
-
     color: aliceblue;
 }
 

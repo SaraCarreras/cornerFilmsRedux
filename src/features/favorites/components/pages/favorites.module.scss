@@ -13,8 +13,6 @@
     flex-direction: column;
 
     & img {
-        width: 50%;
-        height: 50%;
     }
 }
 .errorMessages {
@@ -28,17 +26,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: 5rem;
-    margin-left: 5rem;
 }
 
 .container {
     display: flex;
     flex-wrap: wrap;
-    height: 25rem;
+    height: 24rem;
     width: 18rem;
     background-color: rgb(37, 36, 36);
     justify-content: space-around;
-
     margin-top: 10px;
 }
 
@@ -92,5 +88,13 @@
             margin-left: 1rem;
             padding-right: 1rem;
         }
+    }
+}
+
+@media (max-width: 560px) {
+    .movies {
+        justify-content: center;
+        margin-left: 0rem;
+        margin-right: 0rem;
     }
 }
