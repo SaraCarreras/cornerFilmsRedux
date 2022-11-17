@@ -7,20 +7,13 @@ import {
     faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { MouseEventHandler, SyntheticEvent, useState } from "react";
+import { MouseEventHandler, SyntheticEvent } from "react";
 
 export function Footer({
     onClick,
 }: {
     onClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
-    const [isActive, setIsActive] = useState(false);
-
-    const handleClick = (event: SyntheticEvent) => {
-        event.preventDefault();
-        setIsActive((current) => !current);
-    };
-
     const prevent = (event: SyntheticEvent) => {
         event.preventDefault();
     };
