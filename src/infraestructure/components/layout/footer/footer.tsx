@@ -64,20 +64,12 @@ export function Footer({
                         <FontAwesomeIcon icon={faGithub} />
                     </a>
                 </li>
-                <li>
-                    <a
-                        href="/favorites"
-                        className={
-                            isActive ? styles.navlistitemactive : styles.socials
-                        }
-                        onClick={handleClick}
-                    >
-                        <FontAwesomeIcon icon={faHeart} />
-                    </a>
-                </li>
             </ul>
             <div className={styles.content}>
-                <p>CornerFilms Developed by Sara Carreras</p>
+                <p>
+                    CornerFilms Developed by Sara Carreras{" "}
+                    <FontAwesomeIcon icon={faHeart} />
+                </p>
             </div>
         </footer>
     );
