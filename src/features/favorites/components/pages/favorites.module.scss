@@ -3,6 +3,24 @@
     text-align: flex-start;
     margin-left: 5rem;
     padding-top: 1rem;
+    color: #ffe49c;
+    text-shadow: #c7f8f8 0px 0px 0px, #c7f8f8 0px 0px 50px, #d6ed27 0px 0px 1px;
+}
+
+.errorContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    & img {
+        width: 50%;
+        height: 50%;
+    }
+}
+.errorMessages {
+    padding-top: 1rem;
+    color: #ffe49c;
+    text-shadow: #c7f8f8 0px 0px 0px, #c7f8f8 0px 0px 50px, #d6ed27 0px 0px 1px;
 }
 
 .movies {

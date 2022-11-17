@@ -5,6 +5,7 @@ import { FavButton } from "../../../movies/components/button.fav/button.fav";
 import styles from "./favorites.module.scss";
 
 function Favorites() {
+    const logo = "./error.svg";
     const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 
     const movies = useSelector(
@@ -44,11 +45,24 @@ function Favorites() {
             </React.Fragment>
         );
     } else if (isLogged && movies.length === 0) {
-        return <h1>You don't have favorites movies, yet.</h1>;
+        return (
+            <h1 className={styles.errorMessages}>
+                You don't have favorites movies, yet.
+            </h1>
+        );
     } else if (!isLogged) {
-        return <h1>Sorry, you need to be logged in!</h1>;
+        return (
+            <div className={styles.errorContainer}>
+                <h1 className={styles.errorMessages}>
+                    Sorry, you need to be logged in!
+                </h1>
+                <img src={logo} className={styles.logo} alt="logo" />
+            </div>
+        );
     } else {
-        return <h1>Sorry, we had an error :( </h1>;
+        return (
+            <h1 className={styles.errorMessages}>Sorry, we had an error :( </h1>
+        );
     }
 }
 
