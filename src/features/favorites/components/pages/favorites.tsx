@@ -5,12 +5,15 @@ import { FavButton } from "../../../movies/components/button.fav/button.fav";
 import styles from "./favorites.module.scss";
 
 function Favorites() {
+    const notLogged = "./error.svg";
     const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 
     const movies = useSelector(
         (state) => (state as RootState).login.favoritesArray
     );
     const isLogged = useSelector((state: RootState) => state.login.isLogged);
+    const noFav = "./searchnotfound.gif";
+    const errorPage = "./404.gif";
 
     if (isLogged && movies.length !== 0) {
         return (
@@ -44,11 +47,32 @@ function Favorites() {
             </React.Fragment>
         );
     } else if (isLogged && movies.length === 0) {
-        return <h1>You don't have favorites movies, yet.</h1>;
+        return (
+            <div className={styles.errorContainer}>
+                <h1>You don't have favorites movies, yet.</h1>
+                <div className={styles.imgContainer}>
+                    <img src={noFav} alt="logo error no favorites" />
+                </div>
+            </div>
+        );
     } else if (!isLogged) {
-        return <h1>Sorry, you need to be logged in!</h1>;
+        return (
+            <div className={styles.errorContainer}>
+                <h1>Sorry, you need to be logged in!</h1>
+                <div className={styles.imgContainer}>
+                    <img src={notLogged} alt="logo error not logged" />
+                </div>
+            </div>
+        );
     } else {
-        return <h1>Sorry, we had an error :( </h1>;
+        return (
+            <div className={styles.errorContainer}>
+                <h1>Sorry, we had an error </h1>
+                <div className={styles.imgContainer}>
+                    <img src={errorPage} alt="logo error page" />
+                </div>
+            </div>
+        );
     }
 }
 

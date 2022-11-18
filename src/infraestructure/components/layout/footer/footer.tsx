@@ -7,20 +7,13 @@ import {
     faGithub,
 } from "@fortawesome/free-brands-svg-icons";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { MouseEventHandler, SyntheticEvent, useState } from "react";
+import { MouseEventHandler, SyntheticEvent } from "react";
 
 export function Footer({
     onClick,
 }: {
     onClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
-    const [isActive, setIsActive] = useState(false);
-
-    const handleClick = (event: SyntheticEvent) => {
-        event.preventDefault();
-        setIsActive((current) => !current);
-    };
-
     const prevent = (event: SyntheticEvent) => {
         event.preventDefault();
     };
@@ -64,20 +57,12 @@ export function Footer({
                         <FontAwesomeIcon icon={faGithub} />
                     </a>
                 </li>
-                <li>
-                    <a
-                        href="/favorites"
-                        className={
-                            isActive ? styles.navlistitemactive : styles.socials
-                        }
-                        onClick={handleClick}
-                    >
-                        <FontAwesomeIcon icon={faHeart} />
-                    </a>
-                </li>
             </ul>
             <div className={styles.content}>
-                <p>CornerFilms Developed by Sara Carreras</p>
+                <p>
+                    CornerFilms Developed by Sara Carreras{" "}
+                    <FontAwesomeIcon icon={faHeart} />
+                </p>
             </div>
         </footer>
     );
