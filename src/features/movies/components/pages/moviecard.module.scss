@@ -33,18 +33,20 @@
         }
     }
     .description {
-        height: 250px;
+        height: 257px;
         width: 100%;
+
         background-color: rgba(39, 34, 34, 0.5);
         position: absolute;
-        bottom: -200px;
+        bottom: -197px;
         transition: bottom 0.5s;
 
         & b {
             font-size: large;
             display: block;
-            padding-bottom: 10px;
-            padding-top: 10px;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            margin-top: 0;
         }
 
         & p {
@@ -57,6 +59,7 @@
             // -ms-transform: translate(-10%, -55%);
             margin-left: 1rem;
             padding-right: 1rem;
+            padding-top: 3px;
         }
     }
 
