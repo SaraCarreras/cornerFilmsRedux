@@ -6,10 +6,12 @@ const Header = () => {
     const logo = "./dotpop.svg";
     return (
         <header className={styles.header}>
-            <div className={styles.webname}>
-                CornerFilms
-                <img src={logo} className={styles.logo} alt="logo" />
-            </div>
+            <NavLink to="/" className={styles.navWebName}>
+                <div className={styles.webname}>
+                    CornerFilms
+                    <img src={logo} className={styles.logo} alt="logo" />
+                </div>
+            </NavLink>
 
             <nav className={styles.nav}>
                 <ul>
