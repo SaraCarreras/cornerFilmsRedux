@@ -81,7 +81,7 @@ export function FavButton({
 
     return (
         <>
-            {pathname === "/home" ? (
+            {pathname === "/" ? (
                 <button
                     className={isMyfavorite ? styles.btnactivated : styles.btn2}
                     onClick={handleClick}

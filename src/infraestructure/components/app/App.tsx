@@ -12,11 +12,10 @@ function App() {
     return (
         <Layout>
             <Routes>
-                <Route path="/" element={<Navigate replace to="/home" />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/movies/:movieId" element={<MovieDetails />} />
-                <Route path="*" element={<Navigate replace to="/" />} />
+                <Route path="*" element={<Navigate replace to="/" />}></Route>
             </Routes>
         </Layout>
     );

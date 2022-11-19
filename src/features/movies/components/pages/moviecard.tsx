@@ -5,7 +5,7 @@ import { FavButton } from "../button.fav/button.fav";
 import { moviesActionCreators } from "../../reducer/movies.action.creators";
 import React from "react";
 import styles from "./moviecard.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 /*
     https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707
@@ -28,6 +28,8 @@ const BASEAPI_URL = "https://api.themoviedb.org/3";
 const LANGUAGE = "&language=es&";
 const POPULAR_PAGE = "page=1";
 const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
+
+// https://api.themoviedb.org/3/search/movie?api_key=04d110606a25e52db02f63a7d1e1d707&query=Harry+Potter
 
 const POPULAR_MOVIES =
     BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
