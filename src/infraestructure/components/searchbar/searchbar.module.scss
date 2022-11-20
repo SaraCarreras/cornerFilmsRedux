@@ -38,9 +38,11 @@
         width: 300px;
         transition: width 1s ease-in-out;
     }
-    &:focus {
-        outline: none;
-        border: 2px solid #ffe49c;
-        box-shadow: 0 0 5px #d6ed27;
-    }
+}
+
+.searchInput:focus,
+.searchButton:focus {
+    outline: none;
+    border: 2px solid #ffe49c;
+    box-shadow: 0 0 5px #d6ed27;
 }
