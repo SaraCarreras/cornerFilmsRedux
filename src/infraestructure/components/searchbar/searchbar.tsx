@@ -7,7 +7,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 export default function SearchBar() {
     const navigate = useNavigate();
     const [searchText, setSearchText] = useState("");
-    const [query, setQuery] = useSearchParams();
+    const [query] = useSearchParams();
     const search = query.get("search");
 
     useEffect(() => {
