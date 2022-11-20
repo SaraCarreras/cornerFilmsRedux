@@ -38,9 +38,9 @@
         height: 257px;
         width: 100%;
 
-        background-color: rgba(39, 34, 34, 0.5);
+        background-color: rgba(39, 34, 34, 0.837);
         position: absolute;
-        bottom: -209px;
+        bottom: -212px;
         transition: bottom 0.5s;
 
         & p {
@@ -59,7 +59,7 @@
         & b {
             font-size: large;
             display: block;
-
+            text-align: center;
             margin-top: 2px;
 
             margin-bottom: 1px;
