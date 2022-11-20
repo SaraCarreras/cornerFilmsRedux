@@ -39,7 +39,6 @@ function MovieCard() {
 
     const [query] = useSearchParams();
     const search = query.get("search");
-    console.log(search);
     const urlToSearch = `${BASEAPI_URL}/search/movie?${API_KEY}&query=${search}`;
 
     useEffect(() => {
