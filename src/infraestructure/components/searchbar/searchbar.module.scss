@@ -17,6 +17,11 @@
     border: none;
     background: none;
     font-size: 20px;
+    &:focus {
+        outline: none;
+        border: 1px solid #ffe49c;
+        box-shadow: 0 0 5px #d6ed27;
+    }
 }
 .searchInput {
     height: 35px;
@@ -27,9 +32,15 @@
     border-radius: 25px;
     padding: 5px 40px 5px 20px;
     background-color: rgba(240, 255, 255, 0.917);
+    border: 2px solid rgba(240, 255, 255, 0.917);
     font-size: 18px;
     &:hover {
         width: 300px;
         transition: width 1s ease-in-out;
+    }
+    &:focus {
+        outline: none;
+        border: 2px solid #ffe49c;
+        box-shadow: 0 0 5px #d6ed27;
     }
 }
