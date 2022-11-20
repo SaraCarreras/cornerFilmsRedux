@@ -4,9 +4,9 @@ import styles from "./moviedetails.module.scss";
 import { iParam } from "../../interfaces/imovie";
 import { RootState } from "../../../../infraestructure/store/store";
 
-const imageURL = "https://image.tmdb.org/t/p/w500/";
-
 function MovieDetails() {
+    const imageURL = "https://image.tmdb.org/t/p/w500/";
+    const noImage = "notfound.gif";
     const movies = useSelector((state) => (state as RootState).movies);
 
     const { movieId } = useParams<keyof iParam>() as iParam;
@@ -18,17 +18,24 @@ function MovieDetails() {
     return moviesFiletered ? (
         <>
             {moviesFiletered.map((element) => {
+                console.log(element.poster_path);
                 return element && element.id != null ? (
                     <>
                         <div
                             key={element.id}
                             className={styles.detailsContainer}
                         >
-                            <img
-                                className={styles.col}
-                                src={`${imageURL}` + element.poster_path}
-                                alt={element.title}
-                            />
+                            {element.poster_path ? (
+                                <img
+                                    className={styles.col}
+                                    src={imageURL + element.poster_path}
+                                    alt={element.title}
+                                />
+                            ) : (
+                                <div className={styles.errorImage}>
+                                    <h1>🔻No Poster image </h1>
+                                </div>
+                            )}
 
                             <div className={styles.col}>
                                 <p>

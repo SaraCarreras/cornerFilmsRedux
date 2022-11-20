@@ -18,8 +18,10 @@
     background-repeat: no-repeat;
     background-size: 100%, 100%;
     position: relative;
-
     overflow: hidden;
+    background-color: rgb(67, 65, 65);
+    padding-top: 0;
+    margin-top: 0;
 
     & img {
         height: 100%;
@@ -38,16 +40,8 @@
 
         background-color: rgba(39, 34, 34, 0.5);
         position: absolute;
-        bottom: -197px;
+        bottom: -209px;
         transition: bottom 0.5s;
-
-        & b {
-            font-size: large;
-            display: block;
-            padding-bottom: 0px;
-            padding-top: 0px;
-            margin-top: 0;
-        }
 
         & p {
             text-align: center;
@@ -59,7 +53,16 @@
             // -ms-transform: translate(-10%, -55%);
             margin-left: 1rem;
             padding-right: 1rem;
-            padding-top: 3px;
+            margin-top: 3px;
+        }
+
+        & b {
+            font-size: large;
+            display: block;
+
+            margin-top: 2px;
+
+            margin-bottom: 1px;
         }
     }
 
