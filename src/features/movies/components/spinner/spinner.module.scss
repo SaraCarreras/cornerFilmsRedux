@@ -1,0 +1,12 @@
+.spin {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
