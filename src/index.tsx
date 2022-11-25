@@ -7,6 +7,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import "./index.module.scss";
 import App from "./infraestructure/components/app/App";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient();
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -14,9 +18,12 @@ const root = createRoot(container);
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <Router>
-                <App />
-            </Router>
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <App />
+                    <ReactQueryDevtools />
+                </Router>
+            </QueryClientProvider>
         </Provider>
     </React.StrictMode>
 );
