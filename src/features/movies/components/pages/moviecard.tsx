@@ -50,6 +50,8 @@ function MovieCard({ search }: { search: string }) {
     }, [dispatch, search, urlToSearch]);
     // console.log(movies);
 
+    //  <Spinner />
+
     return (
         <>
             {movies.map((movie) => {
