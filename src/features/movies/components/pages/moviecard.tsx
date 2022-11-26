@@ -5,7 +5,7 @@ import { FavButton } from "../button.fav/button.fav";
 import { moviesActionCreators } from "../../reducer/movies.action.creators";
 import React from "react";
 import styles from "./moviecard.module.scss";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 /*
     https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707
@@ -32,13 +32,11 @@ const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 const POPULAR_MOVIES =
     BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
 
-function MovieCard() {
+function MovieCard({ search }: { search: string }) {
     const noImage = "./camera.svg";
     const dispatch = useDispatch();
     const movies = useSelector((state) => (state as RootState).movies);
 
-    const [query] = useSearchParams();
-    const search = query.get("search");
     const urlToSearch = `${BASEAPI_URL}/search/movie?${API_KEY}&query=${search}`;
 
     useEffect(() => {
@@ -51,6 +49,8 @@ function MovieCard() {
             });
     }, [dispatch, search, urlToSearch]);
     // console.log(movies);
+
+    //  <Spinner />
 
     return (
         <>

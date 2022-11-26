@@ -6,7 +6,7 @@ import { RootState } from "../../../../infraestructure/store/store";
 
 function MovieDetails() {
     const imageURL = "https://image.tmdb.org/t/p/w500/";
-    const noImage = "notfound.gif";
+
     const movies = useSelector((state) => (state as RootState).movies);
 
     const { movieId } = useParams<keyof iParam>() as iParam;
@@ -14,7 +14,9 @@ function MovieDetails() {
     const moviesFiletered = movies.filter(
         (movie) => movie.id.toString() === movieId
     );
-
+    // if(isLoading){
+    //     return <Spinner />;
+    // }
     return moviesFiletered ? (
         <>
             {moviesFiletered.map((element) => {
