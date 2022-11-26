@@ -1,6 +1,5 @@
 import { useSearchParams } from "react-router-dom";
 import MovieCard from "../../../features/movies/components/pages/moviecard";
-import { Spinner } from "../spinner/spinner";
 
 import SearchBar from "../searchbar/searchbar";
 import styles from "./home.module.scss";
