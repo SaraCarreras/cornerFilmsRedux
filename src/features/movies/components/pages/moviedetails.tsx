@@ -46,11 +46,11 @@ function MovieDetails() {
                                 </p>
 
                                 <p>
-                                    <strong>Título: </strong> {element.title}
+                                    <strong>Title: </strong> {element.title}
                                 </p>
 
                                 <p>
-                                    <strong>Fecha de estreno: </strong>
+                                    <strong>Release date: </strong>
                                     {element.release_date}
                                 </p>
                             </div>
