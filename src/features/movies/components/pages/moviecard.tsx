@@ -6,6 +6,7 @@ import { moviesActionCreators } from "../../reducer/movies.action.creators";
 import React from "react";
 import styles from "./moviecard.module.scss";
 import { Link } from "react-router-dom";
+import { NoResults } from "../../../../infraestructure/components/noResults/noResults";
 
 /*
     https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707
@@ -52,8 +53,12 @@ function MovieCard({ search }: { search: string }) {
 
     //  <Spinner />
 
-    return (
+    return movies.length === 0 ? (
+        <NoResults />
+    ) : (
         <>
+            {" "}
+            <h1 className={styles.empty}>Popular Movies</h1>
             {movies.map((movie) => {
                 return (
                     <ul key={movie.id}>
