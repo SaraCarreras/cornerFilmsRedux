@@ -35,7 +35,10 @@ function MovieDetails() {
                                 />
                             ) : (
                                 <div className={styles.errorImage}>
-                                    <h1>🔻No Poster image </h1>
+                                    <h1>
+                                        🔻Sorry, we don't have the poster
+                                        image😱
+                                    </h1>
                                 </div>
                             )}
 
