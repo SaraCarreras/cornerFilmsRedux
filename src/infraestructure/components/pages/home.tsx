@@ -11,7 +11,6 @@ function Home() {
     return (
         <>
             <SearchBar />
-            <h1 className={styles.popularMovies}>Popular Movies</h1>
             <div className={styles.movies}>
                 <MovieCard key={debouncedSearch} search={debouncedSearch} />
             </div>
