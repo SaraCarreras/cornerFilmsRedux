@@ -16,7 +16,6 @@ export default function SearchBar() {
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        navigate("/?search=" + searchText);
     };
 
     return (
@@ -24,10 +23,13 @@ export default function SearchBar() {
             <div className={styles.searchBox}>
                 <input
                     className={styles.searchInput}
-                    type={"text"}
+                    type="text"
                     value={searchText}
+                    placeholder="Search for movies"
                     onChange={(e) => {
-                        setSearchText(e.target.value);
+                        const value = e.target.value;
+                        setSearchText(value);
+                        navigate("/?search=" + value);
                     }}
                 ></input>
                 <button className={styles.searchButton} type="submit">

@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
 
 const API_KEY = "api_key=04d110606a25e52db02f63a7d1e1d707";
 const BASEAPI_URL = "https://api.themoviedb.org/3";
-const LANGUAGE = "&language=es&";
+const LANGUAGE = "&language=en&";
 const POPULAR_PAGE = "page=1";
 const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 

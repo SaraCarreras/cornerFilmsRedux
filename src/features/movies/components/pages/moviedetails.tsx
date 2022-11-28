@@ -35,7 +35,10 @@ function MovieDetails() {
                                 />
                             ) : (
                                 <div className={styles.errorImage}>
-                                    <h1>🔻No Poster image </h1>
+                                    <h1>
+                                        🔻Sorry, we don't have the poster
+                                        image😱
+                                    </h1>
                                 </div>
                             )}
 
@@ -46,11 +49,11 @@ function MovieDetails() {
                                 </p>
 
                                 <p>
-                                    <strong>Título: </strong> {element.title}
+                                    <strong>Title: </strong> {element.title}
                                 </p>
 
                                 <p>
-                                    <strong>Fecha de estreno: </strong>
+                                    <strong>Release date: </strong>
                                     {element.release_date}
                                 </p>
                             </div>
