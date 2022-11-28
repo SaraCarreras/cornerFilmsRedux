@@ -52,6 +52,7 @@ function MovieCard({ search }: { search: string }) {
     // console.log(movies);
 
     //  <Spinner />
+    //cuando esté el isLoading, debo hacer el if con -> !isLoading && movies.length === 0 ?
 
     return movies.length === 0 ? (
         <NoResults />
