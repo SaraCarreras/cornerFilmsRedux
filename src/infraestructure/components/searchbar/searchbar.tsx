@@ -23,8 +23,9 @@ export default function SearchBar() {
             <div className={styles.searchBox}>
                 <input
                     className={styles.searchInput}
-                    type={"text"}
+                    type="text"
                     value={searchText}
+                    placeholder="Search for movies"
                     onChange={(e) => {
                         const value = e.target.value;
                         setSearchText(value);
