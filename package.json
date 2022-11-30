@@ -39,13 +39,6 @@
         "index.tsx",
         "reportWebVitals.js"
     ],
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest",
-            "prettier"
-        ]
-    },
     "browserslist": {
         "production": [
             ">0.2%",
