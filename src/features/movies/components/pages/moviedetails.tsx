@@ -14,6 +14,7 @@ function MovieDetails() {
     const moviesFiletered = movies.filter(
         (movie) => movie.id.toString() === movieId
     );
+
     // if(isLoading){
     //     return <Spinner />;
     // }
