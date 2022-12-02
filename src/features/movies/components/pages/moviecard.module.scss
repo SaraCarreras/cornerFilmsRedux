@@ -1,6 +1,21 @@
 .scroller {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    margin-left: 10px;
+
+    & h1 {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        font-size: 2rem;
+        margin: 40px;
+        margin-left: 30px;
+        color: #ffe49c;
+        text-shadow: #c7f8f8 0px 0px 0px, #c7f8f8 0px 0px 50px,
+            #d6ed27 0px 0px 1px;
+    }
 }
 .container {
     display: flex;
@@ -75,6 +90,10 @@
 }
 
 @media (max-width: 560px) {
+    .scroller {
+        margin-left: 40px;
+        margin-right: 0rem;
+    }
     .serie {
         justify-content: center;
         margin-left: 0rem;
