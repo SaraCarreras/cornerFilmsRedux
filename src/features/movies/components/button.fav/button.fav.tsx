@@ -14,27 +14,13 @@ import { loginActionsCreators } from "../../../../infraestructure/reducer/login.
 // const favoritesProvisional =
 //     "https://api.themoviedb.org/3/person/23?api_key=04d110606a25e52db02f63a7d1e1d707&language=en-US";
 
-export function FavButton({
-    onClick,
-    // idMovie: idMovie,
-    movie,
-}: {
-    onClick?: MouseEventHandler<HTMLButtonElement>;
-    // idMovie: number | string;
-    movie: iMovie;
-}) {
+export function FavButton({ movie }: { movie: iMovie }) {
     const pathname = window.location.pathname;
     const isLogged = useSelector((state: RootState) => state.login.isLogged);
     const userLoggedInfo = useSelector((state: RootState) => state.login);
     const dispatch = useDispatch();
     let isMyfavorite = false;
 
-    // {
-    //     console.log(
-    //         "userLoggedInfo " +
-    //             JSON.stringify(userLoggedInfo.favoritesArray, null, 4)
-    //     );
-    // }
     if (Array.isArray(userLoggedInfo.favoritesArray)) {
         userLoggedInfo.favoritesArray.forEach((item) => {
             item.id === movie.id && (isMyfavorite = true);
