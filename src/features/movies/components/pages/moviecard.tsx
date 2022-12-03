@@ -28,7 +28,7 @@ import { Spinner } from "../../../../infraestructure/components/spinner/spinner"
 
 const API_KEY = "api_key=04d110606a25e52db02f63a7d1e1d707";
 const BASEAPI_URL = "https://api.themoviedb.org/3";
-const LANGUAGE = "&language=en&";
+const LANGUAGE = "&language=en";
 
 const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 
@@ -41,7 +41,7 @@ function MovieCard({ search }: { search: string }) {
     const movies = useSelector((state) => (state as RootState).movies);
 
     //URLs API
-    const POPULAR_PAGE = `page=${page}`;
+    const POPULAR_PAGE = `&page=${page}`;
     const POPULAR_MOVIES =
         BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
     const urlToSearch =
@@ -68,6 +68,7 @@ function MovieCard({ search }: { search: string }) {
         <NoResults />
     ) : (
         <InfiniteScroll
+            key={"movies"}
             className={styles.scroller}
             dataLength={movies.length}
             hasMore={hasMore}
@@ -76,9 +77,9 @@ function MovieCard({ search }: { search: string }) {
         >
             <>
                 <h1>Popular Movies</h1>
-                {movies.map((movie) => {
+                {movies.map((movie, i) => {
                     return (
-                        <ul key={movie.id}>
+                        <ul key={i}>
                             <section className={styles.container}>
                                 <div className={styles.serie}>
                                     {/* <Link
