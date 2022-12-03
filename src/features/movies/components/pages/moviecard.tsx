@@ -68,7 +68,7 @@ function MovieCard({ search }: { search: string }) {
         <NoResults />
     ) : (
         <InfiniteScroll
-            key={"movies"}
+            key={"InfiniteScroll"}
             className={styles.scroller}
             dataLength={movies.length}
             hasMore={hasMore}
