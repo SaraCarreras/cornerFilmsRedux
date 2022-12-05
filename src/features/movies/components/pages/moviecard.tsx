@@ -59,6 +59,12 @@ function MovieCard({ search }: { search: string }) {
                 console.log(data.results);
             });
     }, [dispatch, search, urlToSearch]);
+
+    // function searchedTerm(search: any) {
+    //     return function (x: any) {
+    //         return x.title.toLowerCase().includes(search.toLowerCase()) || "";
+    //     };
+    // }
     // console.log(movies);
 
     //  <Spinner />
@@ -77,6 +83,7 @@ function MovieCard({ search }: { search: string }) {
         >
             <>
                 <h1>Popular Movies</h1>
+                {/* {movies.filter(searchedTerm(search)).map((movie, i) => { */}
                 {movies.map((movie, i) => {
                     return (
                         <ul key={i}>
