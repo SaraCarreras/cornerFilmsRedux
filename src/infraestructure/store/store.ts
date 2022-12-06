@@ -16,6 +16,7 @@ export const store = configureStore({
             favoritesArray: [],
         },
         popularMovies: [],
+
         searchedMovies: [],
     },
     //saca el state del conjunto de los reducers(fav.reducer)
