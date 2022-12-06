@@ -8,7 +8,8 @@ import React from "react";
 function MovieDetails() {
     const imageURL = "https://image.tmdb.org/t/p/w500/";
 
-    const movies = useSelector((state) => (state as RootState).movies);
+    //tendré cambiar esto y hacer 1 llamada con el search, sin cogerlo de mi store
+    const movies = useSelector((state) => (state as RootState).popularMovies);
 
     const { movieId } = useParams<keyof iParam>() as iParam;
 
