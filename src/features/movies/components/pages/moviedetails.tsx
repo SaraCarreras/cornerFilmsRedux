@@ -3,11 +3,13 @@ import { useParams } from "react-router-dom";
 import styles from "./moviedetails.module.scss";
 import { iParam } from "../../interfaces/imovie";
 import { RootState } from "../../../../infraestructure/store/store";
+import React from "react";
 
 function MovieDetails() {
     const imageURL = "https://image.tmdb.org/t/p/w500/";
 
-    const movies = useSelector((state) => (state as RootState).movies);
+    //tendré cambiar esto y hacer 1 llamada con el search, sin cogerlo de mi store
+    const movies = useSelector((state) => (state as RootState).popularMovies);
 
     const { movieId } = useParams<keyof iParam>() as iParam;
 
@@ -20,14 +22,11 @@ function MovieDetails() {
     // }
     return moviesFiletered ? (
         <>
-            {moviesFiletered.map((element) => {
+            {moviesFiletered.map((element, i) => {
                 console.log(element.poster_path);
                 return element && element.id != null ? (
-                    <>
-                        <div
-                            key={element.id}
-                            className={styles.detailsContainer}
-                        >
+                    <React.Fragment key={element.title}>
+                        <div className={styles.detailsContainer}>
                             {element.poster_path ? (
                                 <img
                                     className={styles.col}
@@ -50,7 +49,8 @@ function MovieDetails() {
                                 </p>
 
                                 <p>
-                                    <strong>Title: </strong> {element.title}
+                                    <strong key={i + 8}>Title: </strong>{" "}
+                                    {element.title}
                                 </p>
 
                                 <p>
@@ -59,7 +59,7 @@ function MovieDetails() {
                                 </p>
                             </div>
                         </div>
-                    </>
+                    </React.Fragment>
                 ) : (
                     <h1>"We didn't find the Movie Details."</h1>
                 );
