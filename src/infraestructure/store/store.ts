@@ -15,12 +15,14 @@ export const store = configureStore({
             photoURL: "",
             favoritesArray: [],
         },
-        movies: [],
+        popularMovies: [],
+        searchedMovies: [],
     },
     //saca el state del conjunto de los reducers(fav.reducer)
     reducer: {
         login: loginReducer,
-        movies: moviesReducer,
+        popularMovies: moviesReducer,
+        searchedMovies: moviesReducer,
     },
 });
 

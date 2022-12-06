@@ -38,7 +38,12 @@ function MovieCard({ search }: { search: string }) {
     const [hasMore, setHasMore] = useState(true);
     const noImage = "./camera.svg";
     const dispatch = useDispatch();
-    const movies = useSelector((state) => (state as RootState).movies);
+    const popularMovies = useSelector(
+        (state) => (state as RootState).popularMovies
+    );
+    const searchedMovies = useSelector(
+        (state) => (state as RootState).searchedMovies
+    );
 
     //URLs API
     const POPULAR_PAGE = `&page=${page}`;
@@ -53,7 +58,9 @@ function MovieCard({ search }: { search: string }) {
         fetch(searchURL)
             .then((resp) => resp.json())
             .then((data) => {
-                dispatch(moviesActionCreators.get(movies.concat(data.results)));
+                dispatch(
+                    moviesActionCreators.get(popularMovies.concat(data.results))
+                );
                 setHasMore(data.page < data.total_pages);
                 setIsLoading(false);
                 console.log(data.results);
@@ -70,13 +77,13 @@ function MovieCard({ search }: { search: string }) {
     //  <Spinner />
     //cuando esté el isLoading, debo hacer el if con -> !isLoading && movies.length === 0 ?
 
-    return !isLoading && movies.length === 0 ? (
+    return !isLoading && popularMovies.length === 0 ? (
         <NoResults />
     ) : (
         <InfiniteScroll
             key={"InfiniteScroll"}
             className={styles.scroller}
-            dataLength={movies.length}
+            dataLength={popularMovies.length}
             hasMore={hasMore}
             next={() => setPage((prevPage) => prevPage + 1)}
             loader={<Spinner />}
@@ -84,7 +91,7 @@ function MovieCard({ search }: { search: string }) {
             <>
                 <h1>Popular Movies</h1>
                 {/* {movies.filter(searchedTerm(search)).map((movie, i) => { */}
-                {movies.map((movie, i) => {
+                {popularMovies.map((movie, i) => {
                     return (
                         <ul key={i}>
                             <section className={styles.container}>
