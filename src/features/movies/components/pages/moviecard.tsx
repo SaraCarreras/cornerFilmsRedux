@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../button.fav/button.fav";
-import { moviesActionCreators } from "../../reducer/movies.action.creators";
+import {
+    popularMoviesActionCreators,
+    searchedMoviesActionCreators,
+} from "../../reducer/movies.action.creators";
 import React from "react";
 import styles from "./moviecard.module.scss";
 import { Link } from "react-router-dom";
@@ -38,10 +41,10 @@ function MovieCard({ search }: { search: string }) {
     const [hasMore, setHasMore] = useState(true);
     const noImage = "./camera.svg";
     const dispatch = useDispatch();
-    const popularMovies = useSelector(
+    const popularMoviesStored = useSelector(
         (state) => (state as RootState).popularMovies
     );
-    const searchedMovies = useSelector(
+    const searchedMoviesStored = useSelector(
         (state) => (state as RootState).searchedMovies
     );
 
@@ -53,18 +56,35 @@ function MovieCard({ search }: { search: string }) {
         `${BASEAPI_URL}/search/movie?${API_KEY}&query=${search}` + POPULAR_PAGE;
 
     useEffect(() => {
-        setIsLoading(true);
-        const searchURL = search ? urlToSearch : POPULAR_MOVIES;
-        fetch(searchURL)
-            .then((resp) => resp.json())
-            .then((data) => {
-                dispatch(
-                    moviesActionCreators.get(popularMovies.concat(data.results))
-                );
-                setHasMore(data.page < data.total_pages);
-                setIsLoading(false);
-                console.log(data.results);
-            });
+        if (search !== "") {
+            setIsLoading(true);
+            fetch(urlToSearch)
+                .then((resp) => resp.json())
+                .then((data) => {
+                    dispatch(
+                        searchedMoviesActionCreators.getSearchedMovie(
+                            searchedMoviesStored.concat(data.results)
+                        )
+                    );
+                    console.log(data.results);
+                    setHasMore(data.page < data.total_pages);
+                    setIsLoading(false);
+                });
+        } else {
+            setIsLoading(true);
+            fetch(POPULAR_MOVIES)
+                .then((resp) => resp.json())
+                .then((data) => {
+                    dispatch(
+                        popularMoviesActionCreators.getPopularMovie(
+                            popularMoviesStored.concat(data.results)
+                        )
+                    );
+                    console.log(data.results);
+                    setHasMore(data.page < data.total_pages);
+                    setIsLoading(false);
+                });
+        }
     }, [dispatch, search, urlToSearch]);
 
     // function searchedTerm(search: any) {
@@ -77,59 +97,67 @@ function MovieCard({ search }: { search: string }) {
     //  <Spinner />
     //cuando esté el isLoading, debo hacer el if con -> !isLoading && movies.length === 0 ?
 
-    return !isLoading && popularMovies.length === 0 ? (
-        <NoResults />
-    ) : (
-        <InfiniteScroll
-            key={"InfiniteScroll"}
-            className={styles.scroller}
-            dataLength={popularMovies.length}
-            hasMore={hasMore}
-            next={() => setPage((prevPage) => prevPage + 1)}
-            loader={<Spinner />}
-        >
-            <>
-                <h1>Popular Movies</h1>
-                {/* {movies.filter(searchedTerm(search)).map((movie, i) => { */}
-                {popularMovies.map((movie, i) => {
-                    return (
-                        <ul key={i}>
-                            <section className={styles.container}>
-                                <div className={styles.serie}>
-                                    {/* <Link
+    //hacer un condicional con popularmovies o searchedmovies:
+    // console.log(searchedMoviesStored);
+
+    if (!isLoading && search !== "" && searchedMoviesStored.length === 0) {
+        return <NoResults />;
+    } else {
+        return (
+            <InfiniteScroll
+                key={"InfiniteScroll"}
+                className={styles.scroller}
+                dataLength={popularMoviesStored.length}
+                hasMore={hasMore}
+                next={() => setPage((prevPage) => prevPage + 1)}
+                loader={<Spinner />}
+            >
+                <>
+                    <h1>Popular Movies</h1>
+                    {/* {movies.filter(searchedTerm(search)).map((movie, i) => { */}
+                    {(search ? searchedMoviesStored : popularMoviesStored).map(
+                        (movie, i) => {
+                            // console.log(popularMovies);
+                            return (
+                                <ul key={i}>
+                                    <section className={styles.container}>
+                                        <div className={styles.serie}>
+                                            {/* <Link
                                     to={`/favorites/${movie.id}`}
                                     target="link to full movie"
                                 ></Link> */}
-                                    <Link to={`/movies/${movie.id}`}>
-                                        <img
-                                            src={
-                                                movie.poster_path
-                                                    ? IMAG_URL +
-                                                      movie.poster_path
-                                                    : noImage
-                                            }
-                                            alt={movie.title}
-                                        />
-                                    </Link>
+                                            <Link to={`/movies/${movie.id}`}>
+                                                <img
+                                                    src={
+                                                        movie.poster_path
+                                                            ? IMAG_URL +
+                                                              movie.poster_path
+                                                            : noImage
+                                                    }
+                                                    alt={movie.title}
+                                                />
+                                            </Link>
 
-                                    <div className={styles.description}>
-                                        <p>
-                                            <b>{movie.title}</b>
-                                        </p>
-                                        <p>{movie.overview}</p>
-                                    </div>
+                                            <div className={styles.description}>
+                                                <p>
+                                                    <b>{movie.title}</b>
+                                                </p>
+                                                <p>{movie.overview}</p>
+                                            </div>
 
-                                    <FavButton
-                                        key={movie.id}
-                                        movie={movie}
-                                    ></FavButton>
-                                </div>
-                            </section>
-                        </ul>
-                    );
-                })}
-            </>
-        </InfiniteScroll>
-    );
+                                            <FavButton
+                                                key={movie.id}
+                                                movie={movie}
+                                            ></FavButton>
+                                        </div>
+                                    </section>
+                                </ul>
+                            );
+                        }
+                    )}
+                </>
+            </InfiniteScroll>
+        );
+    }
 }
 export default MovieCard;

@@ -1,16 +1,14 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { iMovie } from "../interfaces/imovie";
-import {
-    popularMoviesActionCreators,
-    searchedMoviesActionCreators,
-} from "./movies.action.creators";
+import { searchedMoviesActionCreators } from "./movies.action.creators";
 
 const initialState: Array<iMovie> = [];
 
-export const moviesReducer = createReducer(initialState, (builder) => {
+export const searchedMoviesReducer = createReducer(initialState, (builder) => {
     return builder
+
         .addCase(
-            popularMoviesActionCreators.getPopularMovie,
+            searchedMoviesActionCreators.getSearchedMovie,
             (state, action) => {
                 return action.payload;
             }
