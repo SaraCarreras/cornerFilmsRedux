@@ -2,9 +2,9 @@
     "configurations": [
         {
             "type": "chrome",
-            "name": "http://localhost:3000/movies/663712",
+            "name": "http://localhost:3000",
             "request": "launch",
-            "url": "http://localhost:3000/movies/663712"
+            "url": "http://localhost:3000"
         }
     ]
 }

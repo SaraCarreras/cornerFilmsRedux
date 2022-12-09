@@ -2,6 +2,13 @@ import { createAction } from "@reduxjs/toolkit";
 import { iMovie } from "../interfaces/imovie";
 import { actionTypes } from "./movies.action.types";
 
-export const moviesActionCreators = {
-    get: createAction<Array<iMovie>>(actionTypes["movies@get"]),
+export const popularMoviesActionCreators = {
+    getPopularMovie: createAction<Array<iMovie>>(
+        actionTypes["movies@getPopularMovie"]
+    ),
+};
+export const searchedMoviesActionCreators = {
+    getSearchedMovie: createAction<Array<iMovie>>(
+        actionTypes["movies@getSearchedMovie"]
+    ),
 };

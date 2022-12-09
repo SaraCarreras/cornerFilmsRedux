@@ -1,3 +1,4 @@
 export enum actionTypes {
-    "movies@get" = "movies@get",
+    "movies@getPopularMovie" = "movies@getPopularMovie",
+    "movies@getSearchedMovie" = "movies@getSearchedMovie",
 }
