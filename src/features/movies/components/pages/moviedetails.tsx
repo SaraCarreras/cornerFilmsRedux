@@ -9,13 +9,20 @@ function MovieDetails() {
     const imageURL = "https://image.tmdb.org/t/p/w500/";
 
     //tendré cambiar esto y hacer 1 llamada con el search, sin cogerlo de mi store
-    const movies = useSelector((state) => (state as RootState).popularMovies);
+    const popularMoviesStored = useSelector(
+        (state) => (state as RootState).popularMovies
+    );
+    const searchedMoviesStored = useSelector(
+        (state) => (state as RootState).searchedMovies
+    );
 
     const { movieId } = useParams<keyof iParam>() as iParam;
 
-    const moviesFiletered = movies.filter(
-        (movie) => movie.id.toString() === movieId
-    );
+    const moviesFiletered = (
+        searchedMoviesStored.length !== 0
+            ? searchedMoviesStored
+            : popularMoviesStored
+    ).filter((movie) => movie.id.toString() === movieId);
 
     // if(isLoading){
     //     return <Spinner />;
