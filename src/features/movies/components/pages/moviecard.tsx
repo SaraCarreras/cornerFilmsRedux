@@ -6,7 +6,6 @@ import {
     popularMoviesActionCreators,
     searchedMoviesActionCreators,
 } from "../../reducer/movies.action.creators";
-import React from "react";
 import styles from "./moviecard.module.scss";
 import { Link } from "react-router-dom";
 import { NoResults } from "../../../../infraestructure/components/noResults/noResults";
@@ -52,13 +51,13 @@ function MovieCard({ search }: { search: string }) {
     const POPULAR_PAGE = `&page=${page}`;
     const POPULAR_MOVIES =
         BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
-    const urlToSearch =
+    const URL_TO_SEARCH =
         `${BASEAPI_URL}/search/movie?${API_KEY}&query=${search}` + POPULAR_PAGE;
 
     useEffect(() => {
         if (search !== "") {
             setIsLoading(true);
-            fetch(urlToSearch)
+            fetch(URL_TO_SEARCH)
                 .then((resp) => resp.json())
                 .then((data) => {
                     dispatch(
@@ -85,7 +84,14 @@ function MovieCard({ search }: { search: string }) {
                     setIsLoading(false);
                 });
         }
-    }, [dispatch, search, urlToSearch]);
+    }, [
+        URL_TO_SEARCH,
+        POPULAR_MOVIES,
+        popularMoviesStored,
+        searchedMoviesStored,
+        dispatch,
+        search,
+    ]);
 
     // function searchedTerm(search: any) {
     //     return function (x: any) {
