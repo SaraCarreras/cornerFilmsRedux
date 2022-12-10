@@ -30,7 +30,6 @@ function MovieDetails() {
     return moviesFiletered ? (
         <>
             {moviesFiletered.map((element, i) => {
-                console.log(element.poster_path);
                 return element && element.id != null ? (
                     <React.Fragment key={element.title}>
                         <div className={styles.detailsContainer}>

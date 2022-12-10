@@ -15,7 +15,7 @@ import { Spinner } from "../../../../infraestructure/components/spinner/spinner"
 /*
     https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707
     
-    //para info de una peli
+    //para info de UNA peli
     https://api.themoviedb.org/3/movie/550?api_key=04d110606a25e52db02f63a7d1e1d707
     
     //pelis populares
@@ -46,6 +46,13 @@ function MovieCard({ search }: { search: string }) {
     const searchedMoviesStored = useSelector(
         (state) => (state as RootState).searchedMovies
     );
+    let isStored = false;
+
+    // if (popularMoviesStored || searchedMoviesStored) {
+    //     (popularMoviesStored || searchedMoviesStored).forEach((item) => {
+    //         item.id === movie.id && (isStored = true);
+    //     });
+    // }
 
     //URLs API
     const POPULAR_PAGE = `&page=${page}`;
@@ -76,10 +83,9 @@ function MovieCard({ search }: { search: string }) {
                 .then((data) => {
                     dispatch(
                         popularMoviesActionCreators.getPopularMovie(
-                            popularMoviesStored.concat(data.results)
+                            data.results
                         )
                     );
-                    console.log(data.results);
                     setHasMore(data.page < data.total_pages);
                     setIsLoading(false);
                 });
@@ -98,13 +104,6 @@ function MovieCard({ search }: { search: string }) {
     //         return x.title.toLowerCase().includes(search.toLowerCase()) || "";
     //     };
     // }
-    // console.log(movies);
-
-    //  <Spinner />
-    //cuando esté el isLoading, debo hacer el if con -> !isLoading && movies.length === 0 ?
-
-    //hacer un condicional con popularmovies o searchedmovies:
-    // console.log(searchedMoviesStored);
 
     if (!isLoading && search !== "" && searchedMoviesStored.length === 0) {
         return <NoResults />;
@@ -120,7 +119,6 @@ function MovieCard({ search }: { search: string }) {
             >
                 <>
                     <h1>Popular Movies</h1>
-                    {/* {movies.filter(searchedTerm(search)).map((movie, i) => { */}
                     {(search ? searchedMoviesStored : popularMoviesStored).map(
                         (movie, i) => {
                             // console.log(popularMovies);
