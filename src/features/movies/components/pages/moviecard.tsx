@@ -36,17 +36,16 @@ const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 
 function MovieCard({ search }: { search: string }) {
     const [page, setPage] = useState(1);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [hasMore, setHasMore] = useState(true);
     const noImage = "./camera.svg";
     const dispatch = useDispatch();
     const popularMoviesStored = useSelector(
-        (state) => (state as RootState).popularMovies
+        (state) => (state as RootState).popularMovies.popularMovies
     );
     const searchedMoviesStored = useSelector(
         (state) => (state as RootState).searchedMovies
     );
-    let isStored = false;
 
     // if (popularMoviesStored || searchedMoviesStored) {
     //     (popularMoviesStored || searchedMoviesStored).forEach((item) => {
@@ -60,8 +59,10 @@ function MovieCard({ search }: { search: string }) {
         BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
     const URL_TO_SEARCH =
         `${BASEAPI_URL}/search/movie?${API_KEY}&query=${search}` + POPULAR_PAGE;
-
+    console.log("FUERA");
     useEffect(() => {
+        console.log("i fire once? StricMode Disabled");
+
         if (search !== "") {
             setIsLoading(true);
             fetch(URL_TO_SEARCH)
@@ -69,42 +70,41 @@ function MovieCard({ search }: { search: string }) {
                 .then((data) => {
                     dispatch(
                         searchedMoviesActionCreators.getSearchedMovie(
-                            searchedMoviesStored.concat(data.results)
-                        )
-                    );
-                    console.log(data.results);
-                    setHasMore(data.page < data.total_pages);
-                    setIsLoading(false);
-                });
-        } else {
-            setIsLoading(true);
-            fetch(POPULAR_MOVIES)
-                .then((resp) => resp.json())
-                .then((data) => {
-                    dispatch(
-                        popularMoviesActionCreators.getPopularMovie(
                             data.results
                         )
                     );
-                    setHasMore(data.page < data.total_pages);
+                    // console.log(searchedMoviesStored);
                     setIsLoading(false);
+                    setHasMore(data.page < data.total_pages);
+
+                    // console.log(setIsLoading);
                 });
         }
-    }, [
-        URL_TO_SEARCH,
-        POPULAR_MOVIES,
-        popularMoviesStored,
-        searchedMoviesStored,
-        dispatch,
-        search,
-    ]);
+    }, []);
+
+    useEffect(() => {
+        console.log("Second useEffect");
+        setIsLoading(true);
+        fetch(POPULAR_MOVIES)
+            .then((resp) => resp.json())
+            .then((data) => {
+                dispatch(
+                    popularMoviesActionCreators.getPopularMovie(data.results)
+                );
+                //console.log(data.results);
+
+                setIsLoading(false);
+                setHasMore(data.page < data.total_pages);
+                // // console.log(data.page);
+            });
+    }, []);
 
     // function searchedTerm(search: any) {
     //     return function (x: any) {
     //         return x.title.toLowerCase().includes(search.toLowerCase()) || "";
     //     };
     // }
-
+    console.log("PRERENDER");
     if (!isLoading && search !== "" && searchedMoviesStored.length === 0) {
         return <NoResults />;
     } else {

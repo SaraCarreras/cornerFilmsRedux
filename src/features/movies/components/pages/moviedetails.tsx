@@ -10,7 +10,7 @@ function MovieDetails() {
 
     //tendré cambiar esto y hacer 1 llamada con el search, sin cogerlo de mi store
     const popularMoviesStored = useSelector(
-        (state) => (state as RootState).popularMovies
+        (state) => (state as RootState).popularMovies.popularMovies
     );
     const searchedMoviesStored = useSelector(
         (state) => (state as RootState).searchedMovies
@@ -23,6 +23,7 @@ function MovieDetails() {
             ? searchedMoviesStored
             : popularMoviesStored
     ).filter((movie) => movie.id.toString() === movieId);
+    console.log(popularMoviesStored);
 
     // if(isLoading){
     //     return <Spinner />;
