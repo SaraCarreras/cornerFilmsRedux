@@ -75,7 +75,7 @@ function MovieCard({ search }: { search: string }) {
                     );
                     // console.log(searchedMoviesStored);
                     setIsLoading(false);
-                    setHasMore(data.page < data.total_pages);
+                    // setHasMore(data.page < data.total_pages);
 
                     // console.log(setIsLoading);
                 });
@@ -83,84 +83,116 @@ function MovieCard({ search }: { search: string }) {
     }, []);
 
     useEffect(() => {
-        console.log("Second useEffect");
-        setIsLoading(true);
-        fetch(POPULAR_MOVIES)
-            .then((resp) => resp.json())
-            .then((data) => {
-                dispatch(
-                    popularMoviesActionCreators.getPopularMovie(data.results)
-                );
-                //console.log(data.results);
+        console.log("PRINCIPAL useEffect");
+        if (popularMoviesStored.length === 0) {
+            setIsLoading(true);
 
-                setIsLoading(false);
-                setHasMore(data.page < data.total_pages);
-                // // console.log(data.page);
-            });
+            fetch(POPULAR_MOVIES)
+                .then((resp) => resp.json())
+                .then((data) => {
+                    dispatch(
+                        popularMoviesActionCreators.getPopularMovie(
+                            data.results
+                        )
+                    );
+                    console.log(data.results);
+
+                    setIsLoading(false);
+                    setPage(page + 1);
+                    console.log(page + "del principal");
+                    // setHasMore(data.page < data.total_pages);
+                    // // console.log(data.page);
+                });
+        } else if (popularMoviesStored.length === 20) {
+            console.log("length =20");
+            return;
+        }
     }, []);
 
-    // function searchedTerm(search: any) {
-    //     return function (x: any) {
-    //         return x.title.toLowerCase().includes(search.toLowerCase()) || "";
-    //     };
-    // }
-    console.log("PRERENDER");
+    useEffect(() => {
+        const onScroll = () => {
+            const scrolledToBottom =
+                window.innerHeight + window.scrollY >=
+                document.body.offsetHeight;
+            console.log(scrolledToBottom);
+            if (scrolledToBottom && !isLoading) {
+                console.log("Fetching more data...");
+                setIsLoading(true);
+
+                fetch(POPULAR_MOVIES)
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        dispatch(
+                            popularMoviesActionCreators.getPopularMovie(
+                                data.results
+                            )
+                        );
+                        console.log(data.results);
+
+                        setIsLoading(false);
+                        setPage(page + 1);
+                        console.log(page + "del ONSCROLL");
+                        // setHasMore(data.page < data.total_pages);
+                        // // console.log(data.page);
+                    });
+                // setPage(page + 1);
+            }
+        };
+
+        document.addEventListener("scroll", onScroll);
+
+        return function () {
+            document.removeEventListener("scroll", onScroll);
+        };
+    }, [page, isLoading]);
+
     if (!isLoading && search !== "" && searchedMoviesStored.length === 0) {
         return <NoResults />;
     } else {
         return (
-            <InfiniteScroll
-                key={"InfiniteScroll"}
-                className={styles.scroller}
-                dataLength={popularMoviesStored.length}
-                hasMore={hasMore}
-                next={() => setPage((prevPage) => prevPage + 1)}
-                loader={<Spinner />}
-            >
-                <>
-                    <h1>Popular Movies</h1>
-                    {(search ? searchedMoviesStored : popularMoviesStored).map(
-                        (movie, i) => {
-                            // console.log(popularMovies);
-                            return (
-                                <ul key={i}>
-                                    <section className={styles.container}>
-                                        <div className={styles.serie}>
-                                            {/* <Link
+            <div className={styles.scroller}>
+                <h1>Popular Movies</h1>
+                {(search ? searchedMoviesStored : popularMoviesStored).map(
+                    (movie, i) => {
+                        // console.log(popularMovies);
+                        return (
+                            <ul key={i}>
+                                <section className={styles.container}>
+                                    <div className={styles.serie}>
+                                        {/* <Link
                                     to={`/favorites/${movie.id}`}
                                     target="link to full movie"
                                 ></Link> */}
-                                            <Link to={`/movies/${movie.id}`}>
-                                                <img
-                                                    src={
-                                                        movie.poster_path
-                                                            ? IMAG_URL +
-                                                              movie.poster_path
-                                                            : noImage
-                                                    }
-                                                    alt={movie.title}
-                                                />
-                                            </Link>
+                                        <Link to={`/movies/${movie.id}`}>
+                                            <img
+                                                src={
+                                                    movie.poster_path
+                                                        ? IMAG_URL +
+                                                          movie.poster_path
+                                                        : noImage
+                                                }
+                                                alt={movie.title}
+                                            />
+                                        </Link>
 
-                                            <div className={styles.description}>
-                                                <p>
-                                                    <b>{movie.title}</b>
-                                                </p>
-                                                <p>{movie.overview}</p>
-                                            </div>
-
-                                            <FavButton
-                                                key={movie.id}
-                                                movie={movie}
-                                            ></FavButton>
+                                        <div className={styles.description}>
+                                            <p>
+                                                <b>{movie.title}</b>
+                                            </p>
+                                            <p>{movie.overview}</p>
                                         </div>
-                                    </section>
-                                </ul>
-                            );
-                        }
-                    )}
-                </>
-            </InfiniteScroll>
+
+                                        <FavButton
+                                            key={movie.id}
+                                            movie={movie}
+                                        ></FavButton>
+                                    </div>
+                                </section>
+                            </ul>
+                        );
+                    }
+                )}
+            </div>
         );
     }
 }
