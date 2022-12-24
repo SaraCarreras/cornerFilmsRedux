@@ -7,6 +7,7 @@ export const popularMoviesActionCreators = {
         actionTypes["movies@getPopularMovie"]
     ),
 };
+
 export const searchedMoviesActionCreators = {
     getSearchedMovie: createAction<Array<iMovie>>(
         actionTypes["movies@getSearchedMovie"]
