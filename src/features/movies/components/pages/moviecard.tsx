@@ -106,6 +106,8 @@ function MovieCard({ search }: { search: string }) {
                 });
         } else if (popularMoviesStored.length === 20) {
             console.log("length =20");
+            setPage(page + 1);
+
             return;
         }
         // CLEAN-UP FUNCTION
