@@ -35,9 +35,6 @@ const LANGUAGE = "&language=en";
 const IMAG_URL = "https://image.tmdb.org/t/p/w200/";
 
 function MovieCard({ search }: { search: string }) {
-    const [page, setPage] = useState(1);
-    const [isLoading, setIsLoading] = useState(false);
-    const [hasMore, setHasMore] = useState(true);
     const noImage = "./camera.svg";
     const dispatch = useDispatch();
     const popularMoviesStored = useSelector(
@@ -47,6 +44,10 @@ function MovieCard({ search }: { search: string }) {
         (state) => (state as RootState).searchedMovies
     );
 
+    const [hasMore, setHasMore] = useState(true);
+    const [page, setPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
+
     // if (popularMoviesStored || searchedMoviesStored) {
     //     (popularMoviesStored || searchedMoviesStored).forEach((item) => {
     //         item.id === movie.id && (isStored = true);
@@ -55,11 +56,11 @@ function MovieCard({ search }: { search: string }) {
 
     //URLs API
     const POPULAR_PAGE = `&page=${page}`;
-    const POPULAR_MOVIES =
-        BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
     const URL_TO_SEARCH =
         `${BASEAPI_URL}/search/movie?${API_KEY}&query=${search}` + POPULAR_PAGE;
-    console.log("FUERA");
+    const POPULAR_MOVIES =
+        BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
+
     useEffect(() => {
         console.log("i fire once? StricMode Disabled");
 
@@ -83,7 +84,7 @@ function MovieCard({ search }: { search: string }) {
     }, []);
 
     useEffect(() => {
-        console.log("PRINCIPAL useEffect");
+        console.log("SECOND useEffect");
         if (popularMoviesStored.length === 0) {
             setIsLoading(true);
 
@@ -95,11 +96,11 @@ function MovieCard({ search }: { search: string }) {
                             data.results
                         )
                     );
-                    console.log(data.results);
+                    // console.log(data.results);
 
                     setIsLoading(false);
                     setPage(page + 1);
-                    console.log(page + "del principal");
+                    // console.log(page + "del principal");
                     // setHasMore(data.page < data.total_pages);
                     // // console.log(data.page);
                 });
@@ -107,14 +108,33 @@ function MovieCard({ search }: { search: string }) {
             console.log("length =20");
             return;
         }
-    }, []);
+        // CLEAN-UP FUNCTION
+        // return function () {
+        //     fetch(POPULAR_MOVIES)
+        //         .then((resp) => resp.json())
+        //         .then((data) => {
+        //             dispatch(
+        //                 popularMoviesActionCreators.deletePopularMovie(
+        //                     data.results
+        //                 )
+        //             );
+        //             // console.log(data.results);
+
+        //             setIsLoading(false);
+        //             //  setPage(page + 1);
+        //             // console.log(page + "del principal");
+        //             // setHasMore(data.page < data.total_pages);
+        //             // // console.log(data.page);
+        //         });
+        // };
+    }, [dispatch]);
 
     useEffect(() => {
         const onScroll = () => {
             const scrolledToBottom =
                 window.innerHeight + window.scrollY >=
                 document.body.offsetHeight;
-            console.log(scrolledToBottom);
+            // console.log(scrolledToBottom);
             if (scrolledToBottom && !isLoading) {
                 console.log("Fetching more data...");
                 setIsLoading(true);
@@ -131,7 +151,7 @@ function MovieCard({ search }: { search: string }) {
 
                         setIsLoading(false);
                         setPage(page + 1);
-                        console.log(page + "del ONSCROLL");
+                        // console.log(page + "del ONSCROLL");
                         // setHasMore(data.page < data.total_pages);
                         // // console.log(data.page);
                     });
@@ -196,4 +216,5 @@ function MovieCard({ search }: { search: string }) {
         );
     }
 }
+
 export default MovieCard;
