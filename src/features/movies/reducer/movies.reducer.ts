@@ -19,5 +19,13 @@ export const moviesReducer = createReducer(initialState, (builder) => {
                 // return [...state, ...action.payload];
             }
         )
+        .addCase(
+            popularMoviesActionCreators.deletePopularMovie,
+            (state, action) => {
+                return initialState;
+
+                // return [...state, ...action.payload];
+            }
+        )
         .addDefaultCase((state) => state);
 });

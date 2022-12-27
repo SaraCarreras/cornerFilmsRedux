@@ -6,6 +6,9 @@ export const popularMoviesActionCreators = {
     getPopularMovie: createAction<Array<iMovie>>(
         actionTypes["movies@getPopularMovie"]
     ),
+    deletePopularMovie: createAction<Array<iMovie>>(
+        actionTypes["movies@deletePopularMovie"]
+    ),
 };
 
 export const searchedMoviesActionCreators = {
