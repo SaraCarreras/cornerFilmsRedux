@@ -41,10 +41,11 @@ function MovieCard({ search }: { search: string }) {
         (state) => (state as RootState).popularMovies.popularMovies
     );
     const searchedMoviesStored = useSelector(
-        (state) => (state as RootState).searchedMovies
+        (state) => (state as RootState).searchedMovies.searchedMovies
     );
 
     const [hasMore, setHasMore] = useState(true);
+    //tengo poner searched page y popular page?
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -76,12 +77,14 @@ function MovieCard({ search }: { search: string }) {
                     );
                     // console.log(searchedMoviesStored);
                     setIsLoading(false);
+                    setPage(page + 1);
                     // setHasMore(data.page < data.total_pages);
 
-                    // console.log(setIsLoading);
+                    console.log(data.total_pages);
+                    console.log(data.page);
                 });
         }
-    }, []);
+    }, [search]);
 
     useEffect(() => {
         console.log("SECOND useEffect");
@@ -107,7 +110,6 @@ function MovieCard({ search }: { search: string }) {
         } else if (popularMoviesStored.length === 20) {
             console.log("length =20");
             setPage(page + 1);
-
             return;
         }
         // CLEAN-UP FUNCTION
@@ -137,7 +139,7 @@ function MovieCard({ search }: { search: string }) {
                 window.innerHeight + window.scrollY >=
                 document.body.offsetHeight;
             // console.log(scrolledToBottom);
-            if (scrolledToBottom && !isLoading) {
+            if (scrolledToBottom && !isLoading && !search) {
                 console.log("Fetching more data...");
                 setIsLoading(true);
 
@@ -153,11 +155,36 @@ function MovieCard({ search }: { search: string }) {
 
                         setIsLoading(false);
                         setPage(page + 1);
-                        // console.log(page + "del ONSCROLL");
+                        console.log(page + " del ONSCROLL POPULAR");
                         // setHasMore(data.page < data.total_pages);
                         // // console.log(data.page);
                     });
                 // setPage(page + 1);
+            } else if (scrolledToBottom && !isLoading && search) {
+                console.log("Fetching more data (search)...");
+                setIsLoading(true);
+
+                fetch(URL_TO_SEARCH)
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        dispatch(
+                            searchedMoviesActionCreators.getSearchedMovie(
+                                data.results
+                            )
+                        );
+                        console.log(data.results);
+                        setIsLoading(false);
+                        setPage(page + 1);
+                        setHasMore(data.page < data.total_pages);
+                        console.log(data.page);
+                        console.log(page);
+                        console.log(data.total_pages);
+
+                        // console.log(setIsLoading);
+                    });
+                // setPage(page + 1);
+            } else if (hasMore === false) {
+                return;
             }
         };
 

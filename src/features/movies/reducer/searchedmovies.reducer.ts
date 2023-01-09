@@ -2,7 +2,9 @@ import { createReducer } from "@reduxjs/toolkit";
 import { iMovie } from "../interfaces/imovie";
 import { searchedMoviesActionCreators } from "./movies.action.creators";
 
-const initialState: Array<iMovie> = [];
+const initialState: { searchedMovies: Array<iMovie> } = {
+    searchedMovies: [],
+};
 
 export const searchedMoviesReducer = createReducer(initialState, (builder) => {
     return builder
@@ -10,8 +12,16 @@ export const searchedMoviesReducer = createReducer(initialState, (builder) => {
         .addCase(
             searchedMoviesActionCreators.getSearchedMovie,
             (state, action) => {
-                return action.payload;
+                return {
+                    ...state,
+                    searchedMovies: [
+                        ...state.searchedMovies,
+                        ...action.payload,
+                    ],
+                };
             }
+
+            // return [...state, ...action.payload];
         )
         .addDefaultCase((state) => state);
 });
