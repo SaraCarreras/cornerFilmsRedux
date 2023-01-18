@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../button.fav/button.fav";
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { NoResults } from "../../../../infraestructure/components/noResults/noResults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Spinner } from "../../../../infraestructure/components/spinner/spinner";
+import { iMovie } from "../../interfaces/imovie";
 
 /*
     https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707
@@ -45,15 +46,9 @@ function MovieCard({ search }: { search: string }) {
     );
 
     const [hasMore, setHasMore] = useState(true);
-    //tengo poner searched page y popular page?
+
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-
-    // if (popularMoviesStored || searchedMoviesStored) {
-    //     (popularMoviesStored || searchedMoviesStored).forEach((item) => {
-    //         item.id === movie.id && (isStored = true);
-    //     });
-    // }
 
     //URLs API
     const POPULAR_PAGE = `&page=${page}`;
@@ -63,7 +58,7 @@ function MovieCard({ search }: { search: string }) {
         BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
 
     useEffect(() => {
-        console.log("i fire once? StricMode Disabled");
+        console.log(`StricMode Disabled ${search}`);
 
         if (search !== "") {
             setIsLoading(true);
@@ -75,16 +70,30 @@ function MovieCard({ search }: { search: string }) {
                             data.results
                         )
                     );
-                    // console.log(searchedMoviesStored);
+
                     setIsLoading(false);
                     setPage(page + 1);
-                    // setHasMore(data.page < data.total_pages);
 
                     console.log(data.total_pages);
                     console.log(data.page);
                 });
+
+            // CLEAN-UP FUNCTION
+            return function () {
+                fetch(URL_TO_SEARCH)
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        dispatch(
+                            searchedMoviesActionCreators.deleteSearchedMovie(
+                                data.results
+                            )
+                        );
+
+                        setIsLoading(false);
+                    });
+            };
         }
-    }, [search]);
+    }, []);
 
     useEffect(() => {
         console.log("SECOND useEffect");
@@ -99,38 +108,15 @@ function MovieCard({ search }: { search: string }) {
                             data.results
                         )
                     );
-                    // console.log(data.results);
 
                     setIsLoading(false);
                     setPage(page + 1);
-                    // console.log(page + "del principal");
-                    // setHasMore(data.page < data.total_pages);
-                    // // console.log(data.page);
                 });
         } else if (popularMoviesStored.length === 20) {
             console.log("length =20");
             setPage(page + 1);
             return;
         }
-        // CLEAN-UP FUNCTION
-        // return function () {
-        //     fetch(POPULAR_MOVIES)
-        //         .then((resp) => resp.json())
-        //         .then((data) => {
-        //             dispatch(
-        //                 popularMoviesActionCreators.deletePopularMovie(
-        //                     data.results
-        //                 )
-        //             );
-        //             // console.log(data.results);
-
-        //             setIsLoading(false);
-        //             //  setPage(page + 1);
-        //             // console.log(page + "del principal");
-        //             // setHasMore(data.page < data.total_pages);
-        //             // // console.log(data.page);
-        //         });
-        // };
     }, [dispatch]);
 
     useEffect(() => {
@@ -156,12 +142,10 @@ function MovieCard({ search }: { search: string }) {
                         setIsLoading(false);
                         setPage(page + 1);
                         console.log(page + " del ONSCROLL POPULAR");
-                        // setHasMore(data.page < data.total_pages);
-                        // // console.log(data.page);
                     });
                 // setPage(page + 1);
             } else if (scrolledToBottom && !isLoading && search) {
-                console.log("Fetching more data (search)...");
+                console.log("Fetching more data (search)..." + search);
                 setIsLoading(true);
 
                 fetch(URL_TO_SEARCH)
@@ -179,10 +163,7 @@ function MovieCard({ search }: { search: string }) {
                         console.log(data.page);
                         console.log(page);
                         console.log(data.total_pages);
-
-                        // console.log(setIsLoading);
                     });
-                // setPage(page + 1);
             } else if (hasMore === false) {
                 return;
             }
