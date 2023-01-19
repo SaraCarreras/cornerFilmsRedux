@@ -13,7 +13,7 @@ function MovieDetails() {
         (state) => (state as RootState).popularMovies.popularMovies
     );
     const searchedMoviesStored = useSelector(
-        (state) => (state as RootState).searchedMovies
+        (state) => (state as RootState).searchedMovies.searchedMovies
     );
 
     const { movieId } = useParams<keyof iParam>() as iParam;

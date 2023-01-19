@@ -15,4 +15,7 @@ export const searchedMoviesActionCreators = {
     getSearchedMovie: createAction<Array<iMovie>>(
         actionTypes["movies@getSearchedMovie"]
     ),
+    deleteSearchedMovie: createAction<Array<iMovie>>(
+        actionTypes["movies@deleteSearchedMovie"]
+    ),
 };

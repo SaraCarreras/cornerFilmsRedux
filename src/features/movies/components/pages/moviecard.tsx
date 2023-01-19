@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../button.fav/button.fav";
@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import { NoResults } from "../../../../infraestructure/components/noResults/noResults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Spinner } from "../../../../infraestructure/components/spinner/spinner";
+import { iMovie } from "../../interfaces/imovie";
 
 /*
     https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707
@@ -41,18 +42,13 @@ function MovieCard({ search }: { search: string }) {
         (state) => (state as RootState).popularMovies.popularMovies
     );
     const searchedMoviesStored = useSelector(
-        (state) => (state as RootState).searchedMovies
+        (state) => (state as RootState).searchedMovies.searchedMovies
     );
 
     const [hasMore, setHasMore] = useState(true);
+
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-
-    // if (popularMoviesStored || searchedMoviesStored) {
-    //     (popularMoviesStored || searchedMoviesStored).forEach((item) => {
-    //         item.id === movie.id && (isStored = true);
-    //     });
-    // }
 
     //URLs API
     const POPULAR_PAGE = `&page=${page}`;
@@ -62,7 +58,7 @@ function MovieCard({ search }: { search: string }) {
         BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
 
     useEffect(() => {
-        console.log("i fire once? StricMode Disabled");
+        console.log(`StricMode Disabled ${search}`);
 
         if (search !== "") {
             setIsLoading(true);
@@ -74,12 +70,28 @@ function MovieCard({ search }: { search: string }) {
                             data.results
                         )
                     );
-                    // console.log(searchedMoviesStored);
-                    setIsLoading(false);
-                    // setHasMore(data.page < data.total_pages);
 
-                    // console.log(setIsLoading);
+                    setIsLoading(false);
+                    setPage(page + 1);
+
+                    console.log(data.total_pages);
+                    console.log(data.page);
                 });
+
+            // CLEAN-UP FUNCTION
+            return function () {
+                fetch(URL_TO_SEARCH)
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        dispatch(
+                            searchedMoviesActionCreators.deleteSearchedMovie(
+                                data.results
+                            )
+                        );
+
+                        setIsLoading(false);
+                    });
+            };
         }
     }, []);
 
@@ -96,37 +108,15 @@ function MovieCard({ search }: { search: string }) {
                             data.results
                         )
                     );
-                    // console.log(data.results);
 
                     setIsLoading(false);
                     setPage(page + 1);
-                    // console.log(page + "del principal");
-                    // setHasMore(data.page < data.total_pages);
-                    // // console.log(data.page);
                 });
         } else if (popularMoviesStored.length === 20) {
             console.log("length =20");
+            setPage(page + 1);
             return;
         }
-        // CLEAN-UP FUNCTION
-        // return function () {
-        //     fetch(POPULAR_MOVIES)
-        //         .then((resp) => resp.json())
-        //         .then((data) => {
-        //             dispatch(
-        //                 popularMoviesActionCreators.deletePopularMovie(
-        //                     data.results
-        //                 )
-        //             );
-        //             // console.log(data.results);
-
-        //             setIsLoading(false);
-        //             //  setPage(page + 1);
-        //             // console.log(page + "del principal");
-        //             // setHasMore(data.page < data.total_pages);
-        //             // // console.log(data.page);
-        //         });
-        // };
     }, [dispatch]);
 
     useEffect(() => {
@@ -135,7 +125,7 @@ function MovieCard({ search }: { search: string }) {
                 window.innerHeight + window.scrollY >=
                 document.body.offsetHeight;
             // console.log(scrolledToBottom);
-            if (scrolledToBottom && !isLoading) {
+            if (scrolledToBottom && !isLoading && !search) {
                 console.log("Fetching more data...");
                 setIsLoading(true);
 
@@ -151,11 +141,31 @@ function MovieCard({ search }: { search: string }) {
 
                         setIsLoading(false);
                         setPage(page + 1);
-                        // console.log(page + "del ONSCROLL");
-                        // setHasMore(data.page < data.total_pages);
-                        // // console.log(data.page);
+                        console.log(page + " del ONSCROLL POPULAR");
                     });
                 // setPage(page + 1);
+            } else if (scrolledToBottom && !isLoading && search) {
+                console.log("Fetching more data (search)..." + search);
+                setIsLoading(true);
+
+                fetch(URL_TO_SEARCH)
+                    .then((resp) => resp.json())
+                    .then((data) => {
+                        dispatch(
+                            searchedMoviesActionCreators.getSearchedMovie(
+                                data.results
+                            )
+                        );
+                        console.log(data.results);
+                        setIsLoading(false);
+                        setPage(page + 1);
+                        setHasMore(data.page < data.total_pages);
+                        console.log(data.page);
+                        console.log(page);
+                        console.log(data.total_pages);
+                    });
+            } else if (hasMore === false) {
+                return;
             }
         };
 
@@ -174,15 +184,10 @@ function MovieCard({ search }: { search: string }) {
                 <h1>Popular Movies</h1>
                 {(search ? searchedMoviesStored : popularMoviesStored).map(
                     (movie, i) => {
-                        // console.log(popularMovies);
                         return (
                             <ul key={i}>
                                 <section className={styles.container}>
                                     <div className={styles.serie}>
-                                        {/* <Link
-                                    to={`/favorites/${movie.id}`}
-                                    target="link to full movie"
-                                ></Link> */}
                                         <Link to={`/movies/${movie.id}`}>
                                             <img
                                                 src={
