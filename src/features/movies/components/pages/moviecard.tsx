@@ -184,15 +184,10 @@ function MovieCard({ search }: { search: string }) {
                 <h1>Popular Movies</h1>
                 {(search ? searchedMoviesStored : popularMoviesStored).map(
                     (movie, i) => {
-                        // console.log(popularMovies);
                         return (
                             <ul key={i}>
                                 <section className={styles.container}>
                                     <div className={styles.serie}>
-                                        {/* <Link
-                                    to={`/favorites/${movie.id}`}
-                                    target="link to full movie"
-                                ></Link> */}
                                         <Link to={`/movies/${movie.id}`}>
                                             <img
                                                 src={
