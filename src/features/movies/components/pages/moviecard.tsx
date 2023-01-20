@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../button.fav/button.fav";
@@ -9,9 +9,6 @@ import {
 import styles from "./moviecard.module.scss";
 import { Link } from "react-router-dom";
 import { NoResults } from "../../../../infraestructure/components/noResults/noResults";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Spinner } from "../../../../infraestructure/components/spinner/spinner";
-import { iMovie } from "../../interfaces/imovie";
 
 /*
     https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707

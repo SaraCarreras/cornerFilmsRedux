@@ -40,7 +40,7 @@
 
 .container {
     display: flex;
-    flex-wrap: wrap;
+
     height: 24rem;
     width: 18rem;
     background-color: rgb(37, 36, 36);
@@ -56,13 +56,14 @@
     background-repeat: no-repeat;
     background-size: 100%, 100%;
     position: relative;
-
-    margin-top: 10px;
+    padding-top: 0;
+    margin-top: 0;
 
     overflow: hidden;
 
     & img {
-        width: 100%;
+        height: 100%;
+        width: 116%;
     }
 
     &:hover {
@@ -75,7 +76,7 @@
     .description {
         height: 310px;
         width: 100%;
-        background-color: rgba(39, 34, 34, 0.5);
+        background-color: rgba(39, 34, 34, 0.603);
         position: absolute;
         bottom: -245px;
         transition: bottom 0.5s;
@@ -98,6 +99,9 @@
             margin-left: 1rem;
             padding-right: 1rem;
         }
+    }
+    &:hover {
+        opacity: 0.9;
     }
 }
 

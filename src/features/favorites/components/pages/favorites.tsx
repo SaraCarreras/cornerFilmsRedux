@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { RootState } from "../../../../infraestructure/store/store";
 import { FavButton } from "../../../movies/components/button.fav/button.fav";
 import styles from "./favorites.module.scss";
@@ -24,10 +25,13 @@ function Favorites() {
                         return (
                             <section className={styles.container}>
                                 <div className={styles.serie}>
-                                    <img
-                                        src={IMAG_URL + movie.poster_path}
-                                        alt="{movie.title}"
-                                    ></img>
+                                    <Link to={`/movies/${movie.id}`}>
+                                        <img
+                                            src={IMAG_URL + movie.poster_path}
+                                            alt={movie.title}
+                                        ></img>
+                                    </Link>
+
                                     <div className={styles.description}>
                                         <p>
                                             <b>{movie.title}</b>
