@@ -15,7 +15,7 @@ export function ButtonLogin() {
                         <img
                             className={styles.img}
                             alt={loginState.name}
-                            src={loginState.photoURL}
+                            src="https://lh3.googleusercontent.com/a/AItbvmkK1G_rJEhwAu4_MD9tesYhwfsA2eIra6yDrMqT=s96-c"
                         ></img>
                     ) : (
                         ""
