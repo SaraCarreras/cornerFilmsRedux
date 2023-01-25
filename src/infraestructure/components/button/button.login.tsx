@@ -36,17 +36,6 @@ export function ButtonLogin() {
                     )}
                 </li>
             </ul>
-            {/* <p className={loginbutton.name}>{loginState.name}</p> */}
-
-            {/* OTRA FORMA
-             <div>
-                {loginState.name ? (
-                    <button onClick={log.doLogout}>Log out</button>
-                ) : (
-                    <button onClick={log.doLogin}>Login</button>
-                )}
-            </div>
-            <p>{loginState.name}</p>*/}
         </>
     );
 }
