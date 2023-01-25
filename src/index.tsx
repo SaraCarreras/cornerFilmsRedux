@@ -18,12 +18,9 @@ const root = createRoot(container);
 root.render(
     // <React.StrictMode>
     <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-            <Router>
-                <App />
-                <ReactQueryDevtools />
-            </Router>
-        </QueryClientProvider>
+        <Router>
+            <App />
+        </Router>
     </Provider>
     // </React.StrictMode>
 );

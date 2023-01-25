@@ -23,7 +23,7 @@ function MovieDetails() {
             ? searchedMoviesStored
             : popularMoviesStored
     ).filter((movie) => movie.id.toString() === movieId);
-    console.log(popularMoviesStored);
+    console.log(moviesFiletered);
 
     // if(isLoading){
     //     return <Spinner />;
