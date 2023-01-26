@@ -42,17 +42,11 @@ function MovieDetails() {
         <>
             <React.Fragment key={movie.title}>
                 <div className={styles.detailsContainer}>
-                    {movie.poster_path ? (
-                        <img
-                            className={styles.col}
-                            src={imageURL + movie.poster_path}
-                            alt={movie.title}
-                        />
-                    ) : (
-                        <div className={styles.errorImage}>
-                            <h1>🔻Sorry, we don't have the poster image😱</h1>
-                        </div>
-                    )}
+                    <img
+                        className={styles.col}
+                        src={imageURL + movie.poster_path}
+                        alt={movie.title}
+                    />
 
                     <div className={styles.col}>
                         <p>
