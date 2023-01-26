@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from "./moviedetails.module.scss";
 import { iMovie, iParam } from "../../interfaces/imovie";
-import { RootState } from "../../../../infraestructure/store/store";
 import React, { useEffect, useState } from "react";
 import { Spinner } from "../../../../infraestructure/components/spinner/spinner";
 
@@ -36,7 +34,6 @@ function MovieDetails() {
                 });
         }
     }, [movieId]);
-    console.log(movie);
 
     if (isLoading) {
         return <Spinner />;
