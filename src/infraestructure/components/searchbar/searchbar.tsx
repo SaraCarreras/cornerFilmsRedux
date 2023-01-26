@@ -39,29 +39,3 @@ export default function SearchBar() {
         </form>
     );
 }
-// export default function SearchBar() {
-//     const navigate = useNavigate();
-//     const [searchText, setSearchText] = useState("");
-//     const handleSubmit = (e: SyntheticEvent) => {
-//         e.preventDefault();
-//     };
-//     return (
-//         <form className={styles.searchContainer} onSubmit={handleSubmit}>
-//             <div className={styles.searchBox}>
-//                 <input
-//                     className={styles.searchInput}
-//                     type={"text"}
-//                     value={searchText}
-//                     onChange={(e) => {
-//                         const value = e.target.value;
-//                         navigate("/?search=" + value);
-//                         setSearchText(value);
-//                     }}
-//                 ></input>
-//                 <button className={styles.searchButton} type="submit">
-//                     <FontAwesomeIcon icon={faMagnifyingGlass} />
-//                 </button>
-//             </div>
-//         </form>
-//     );
-// }

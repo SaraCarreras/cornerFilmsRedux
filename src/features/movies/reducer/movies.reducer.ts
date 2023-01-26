@@ -15,16 +15,12 @@ export const moviesReducer = createReducer(initialState, (builder) => {
                     ...state,
                     popularMovies: [...state.popularMovies, ...action.payload],
                 };
-
-                // return [...state, ...action.payload];
             }
         )
         .addCase(
             popularMoviesActionCreators.deletePopularMovie,
             (state, action) => {
                 return initialState;
-
-                // return [...state, ...action.payload];
             }
         )
         .addDefaultCase((state) => state);

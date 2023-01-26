@@ -11,18 +11,20 @@ import { Link } from "react-router-dom";
 import { NoResults } from "../../../../infraestructure/components/noResults/noResults";
 
 /*
-    https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc&04d110606a25e52db02f63a7d1e1d707
+URL EXAMPLES:
+    -discover
+    https://api.themoviedb.org/3/discover/movie/?certification_country=US&certification=R&sort_by=vote_average.desc?api_key=04d110606a25e52db02f63a7d1e1d707
     
-    //para info de UNA peli
+    -para info de UNA peli
     https://api.themoviedb.org/3/movie/550?api_key=04d110606a25e52db02f63a7d1e1d707
     
-    //pelis populares
+    -pelis populares
     https://api.themoviedb.org/3/movie/popular?api_key=04d110606a25e52db02f63a7d1e1d707&language=es&page=1
 
-    //trending
+    -trending
     https://api.themoviedb.org/3/trending/movie/week?api_key=04d110606a25e52db02f63a7d1e1d707
 
-    //poster path es a partir último / entrando en pelis popus x ej
+    -poster path es a partir último / entrando en pelis populares x ej
     https://image.tmdb.org/t/p/w200/qTkJ6kbTeSjqfHCFCmWnfWZJOtm.jpg
     */
 
@@ -55,8 +57,6 @@ function MovieCard({ search }: { search: string }) {
         BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
 
     useEffect(() => {
-        console.log(`StricMode Disabled ${search}`);
-
         if (search !== "") {
             setIsLoading(true);
             fetch(URL_TO_SEARCH)
@@ -67,12 +67,8 @@ function MovieCard({ search }: { search: string }) {
                             data.results
                         )
                     );
-
                     setIsLoading(false);
                     setPage(page + 1);
-
-                    console.log(data.total_pages);
-                    console.log(data.page);
                 });
 
             // CLEAN-UP FUNCTION
@@ -93,7 +89,6 @@ function MovieCard({ search }: { search: string }) {
     }, []);
 
     useEffect(() => {
-        console.log("SECOND useEffect");
         if (popularMoviesStored.length === 0) {
             setIsLoading(true);
 
@@ -110,20 +105,18 @@ function MovieCard({ search }: { search: string }) {
                     setPage(page + 1);
                 });
         } else if (popularMoviesStored.length === 20) {
-            console.log("length =20");
             setPage(page + 1);
             return;
         }
     }, [dispatch]);
 
+    //useEffect to fetch more data on scroll
     useEffect(() => {
         const onScroll = () => {
             const scrolledToBottom =
                 window.innerHeight + window.scrollY >=
                 document.body.offsetHeight;
-            // console.log(scrolledToBottom);
             if (scrolledToBottom && !isLoading && !search) {
-                console.log("Fetching more data...");
                 setIsLoading(true);
 
                 fetch(POPULAR_MOVIES)
@@ -134,15 +127,12 @@ function MovieCard({ search }: { search: string }) {
                                 data.results
                             )
                         );
-                        console.log(data.results);
 
                         setIsLoading(false);
                         setPage(page + 1);
-                        console.log(page + " del ONSCROLL POPULAR");
                     });
-                // setPage(page + 1);
             } else if (scrolledToBottom && !isLoading && search) {
-                console.log("Fetching more data (search)..." + search);
+                //Fetching more data on search
                 setIsLoading(true);
 
                 fetch(URL_TO_SEARCH)
@@ -153,13 +143,9 @@ function MovieCard({ search }: { search: string }) {
                                 data.results
                             )
                         );
-                        console.log(data.results);
                         setIsLoading(false);
                         setPage(page + 1);
                         setHasMore(data.page < data.total_pages);
-                        console.log(data.page);
-                        console.log(page);
-                        console.log(data.total_pages);
                     });
             } else if (hasMore === false) {
                 return;
@@ -167,7 +153,7 @@ function MovieCard({ search }: { search: string }) {
         };
 
         document.addEventListener("scroll", onScroll);
-
+        //cleanup function
         return function () {
             document.removeEventListener("scroll", onScroll);
         };

@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from "./moviedetails.module.scss";
 import { iMovie, iParam } from "../../interfaces/imovie";
-import { RootState } from "../../../../infraestructure/store/store";
 import React, { useEffect, useState } from "react";
+import { Spinner } from "../../../../infraestructure/components/spinner/spinner";
 
 function MovieDetails() {
     const imageURL = "https://image.tmdb.org/t/p/w500/";
@@ -15,17 +14,10 @@ function MovieDetails() {
         vote_average: 0,
         release_date: ",",
     });
-
-    //tendré cambiar esto y hacer 1 llamada con el search, sin cogerlo de mi store
-    // const popularMoviesStored = useSelector(
-    //     (state) => (state as RootState).popularMovies.popularMovies
-    // );
-    // const searchedMoviesStored = useSelector(
-    //     (state) => (state as RootState).searchedMovies.searchedMovies
-    // );
+    const [isLoading, setIsLoading] = useState(false);
 
     const { movieId } = useParams<keyof iParam>() as iParam;
-    console.log(movieId);
+
     const API_KEY = "api_key=04d110606a25e52db02f63a7d1e1d707";
     const BASEAPI_URL = "https://api.themoviedb.org/3";
     const LANGUAGE = "&language=en";
@@ -33,27 +25,20 @@ function MovieDetails() {
 
     useEffect(() => {
         if (movieId) {
+            setIsLoading(true);
             fetch(URL_BY_ID)
                 .then((resp) => resp.json())
                 .then((data) => {
                     setMovie(data);
-                    console.log(data);
+                    setIsLoading(false);
                 });
         }
     }, [movieId]);
-    console.log(movie);
 
-    // const moviesFiletered = (
-    //     searchedMoviesStored.length !== 0
-    //         ? searchedMoviesStored
-    //         : popularMoviesStored
-    // ).filter((movie) => movie.id.toString() === movieId);
-    //console.log(moviesFiletered);
-
-    // if(isLoading){
-    //     return <Spinner />;
-    // }
-    return movie ? (
+    if (isLoading) {
+        return <Spinner />;
+    }
+    return movie && isLoading === false ? (
         <>
             <React.Fragment key={movie.title}>
                 <div className={styles.detailsContainer}>
