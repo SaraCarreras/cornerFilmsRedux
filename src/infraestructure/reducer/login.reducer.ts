@@ -44,7 +44,7 @@ export const loginReducer = createReducer(initialState, (builder) => {
         .addDefaultCase((state) => state);
 });
 
-/////SIMPLEST EXAMPLE OF A REDUCER:
+//SIMPLEST EXAMPLE OF A REDUCER:
 // const counterReducer = (state ={counter:0}, action) => {
 //     if(action.type === 'increment') {
 //         return {

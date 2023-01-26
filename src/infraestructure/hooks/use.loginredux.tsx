@@ -4,9 +4,7 @@ import {
     GoogleAuthProvider,
     signOut,
 } from "firebase/auth";
-//import { useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
-//import { iLogin } from "../interfaces/ilogin";
 import { loginActionsCreators } from "../reducer/login.action.creators";
 
 export function useLoginRedux() {

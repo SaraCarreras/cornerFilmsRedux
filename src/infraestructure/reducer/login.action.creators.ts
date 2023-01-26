@@ -4,7 +4,7 @@ import { actionTypes } from "./login.action.types";
 
 export const loginActionsCreators = {
     login: createAction<{
-        // lo que viene después esto son payloads xk el action type ya está después
+        // payloads
         uid: string | null;
         name: string | null;
         email: string | null;

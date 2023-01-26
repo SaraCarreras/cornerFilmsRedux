@@ -1,18 +1,13 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { MouseEventHandler, SyntheticEvent } from "react";
+import { SyntheticEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { iMovie } from "../../interfaces/imovie";
 import { RootState } from "../../../../infraestructure/store/store";
 import { addFavorite } from "../../../favorites/services/http.fetch.repository";
-
 import styles from "./buttonfav.module.scss";
 import { loginActionsCreators } from "../../../../infraestructure/reducer/login.action.creators";
-
-// const favoritesProvisional =
-//     "https://api.themoviedb.org/3/person/23?api_key=04d110606a25e52db02f63a7d1e1d707&language=en-US";
 
 export function FavButton({ movie }: { movie: iMovie }) {
     const pathname = window.location.pathname;
@@ -32,21 +27,10 @@ export function FavButton({ movie }: { movie: iMovie }) {
         if (!isLogged) return;
         const userUid = userLoggedInfo.uid;
 
-        // console.log(
-        //     "userLoggedInfo UID " + JSON.stringify(userLoggedInfo.uid, null, 4)
-        // );
-        // console.log(
-        //     "userLoggedInfo FAVORITES ANTES " +
-        //         JSON.stringify(userLoggedInfo.favoritesArray, null, 4)
-        // );
-
         let newFavoritesArray: Array<iMovie> = [
             ...userLoggedInfo.favoritesArray,
         ];
 
-        // console.log(
-        //     "isMyfavorite ANTES ANTES " + JSON.stringify(isMyfavorite, null, 4)
-        // );
         if (isMyfavorite) {
             newFavoritesArray = newFavoritesArray.filter(
                 (item) => item.id !== movie.id
