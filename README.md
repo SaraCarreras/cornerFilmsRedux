@@ -3,6 +3,7 @@
 This project was bootstrapped with [Create React App], using the [Redux] and [Redux Toolkit]TS template.
 
 ## Technologies used
+
 ✨ React | Redux | TypeScript | SASS | Netlify for deployment
 
 <div align="left" >
@@ -14,12 +15,12 @@ This project was bootstrapped with [Create React App], using the [Redux] and [Re
   
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="sass" width="40" height="40"/>
 </div>
-    
+
 
 ## Preview
 
 <div align="center">
-<a href="https:.app/">
+<a href="https:./">
                                Link to Netlify deployment
                             </a>
 
@@ -27,17 +28,14 @@ This project was bootstrapped with [Create React App], using the [Redux] and [Re
 
 </div>
 
-
 ## Available Scripts
 
 In the project directory, you can run:
 
-- `npm start`
+-   `npm start`
 
-- `npm test`
+-   `npm test`
 
-- `npm run build`
+-   `npm run build`
 
-- `npm run eject`
-
-
+-   `npm run eject`
