@@ -20,13 +20,15 @@ This project was bootstrapped with [Create React App], using the [Redux] and [Re
 ## Preview
 
 <div align="center">
-<a href="https:./">
+<a href="https://cornerfilms.netlify.app">
                                Link to Netlify deployment
                             </a>
 
 <img alt="corner_demo" style="width: 450px; height: 350px" src="public/corner_demo.gif"> </img>
 
 </div>
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6077252e-412b-41c7-a147-3e8cf14c610f/deploy-status)](https://app.netlify.com/sites/cornerfilms/deploys)
 
 ## Available Scripts
 
