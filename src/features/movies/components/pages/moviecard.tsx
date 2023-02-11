@@ -57,35 +57,32 @@ function MovieCard({ search }: { search: string }) {
         BASEAPI_URL + "/movie/popular?" + API_KEY + LANGUAGE + POPULAR_PAGE;
 
     useEffect(() => {
-        if (search !== "") {
-            setIsLoading(true);
+        if (!search) return;
+        setIsLoading(true);
+        fetch(URL_TO_SEARCH)
+            .then((resp) => resp.json())
+            .then((data) => {
+                dispatch(
+                    searchedMoviesActionCreators.getSearchedMovie(data.results)
+                );
+                setIsLoading(false);
+                setPage(page + 1);
+            });
+
+        // CLEAN-UP FUNCTION
+        return function () {
             fetch(URL_TO_SEARCH)
                 .then((resp) => resp.json())
                 .then((data) => {
                     dispatch(
-                        searchedMoviesActionCreators.getSearchedMovie(
+                        searchedMoviesActionCreators.deleteSearchedMovie(
                             data.results
                         )
                     );
+
                     setIsLoading(false);
-                    setPage(page + 1);
                 });
-
-            // CLEAN-UP FUNCTION
-            return function () {
-                fetch(URL_TO_SEARCH)
-                    .then((resp) => resp.json())
-                    .then((data) => {
-                        dispatch(
-                            searchedMoviesActionCreators.deleteSearchedMovie(
-                                data.results
-                            )
-                        );
-
-                        setIsLoading(false);
-                    });
-            };
-        }
+        };
     }, []);
 
     useEffect(() => {

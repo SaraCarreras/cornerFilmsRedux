@@ -24,15 +24,14 @@ function MovieDetails() {
     const URL_BY_ID = BASEAPI_URL + `/movie/${movieId}?` + API_KEY + LANGUAGE;
 
     useEffect(() => {
-        if (movieId) {
-            setIsLoading(true);
-            fetch(URL_BY_ID)
-                .then((resp) => resp.json())
-                .then((data) => {
-                    setMovie(data);
-                    setIsLoading(false);
-                });
-        }
+        if (!movieId) return;
+        setIsLoading(true);
+        fetch(URL_BY_ID)
+            .then((resp) => resp.json())
+            .then((data) => {
+                setMovie(data);
+                setIsLoading(false);
+            });
     }, [movieId]);
 
     if (isLoading) {
