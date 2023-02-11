@@ -15,10 +15,10 @@ export function ButtonLogin() {
                         <img
                             className={styles.img}
                             alt={loginState.name}
-                            src="https://lh3.googleusercontent.com/a/AItbvmkK1G_rJEhwAu4_MD9tesYhwfsA2eIra6yDrMqT=s96-c"
+                            src={loginState.photoURL}
                         ></img>
                     ) : (
-                        ""
+                        <p>{loginState.name}</p>
                     )}
                 </li>
                 <li>
